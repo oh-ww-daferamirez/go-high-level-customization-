@@ -1,0 +1,345 @@
+/* ===================================
+   RESET Y NORMALIZACIÓN
+   Go High Level Customization
+   =================================== */
+
+/* Box sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove margins and paddings */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* HTML & Body */
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-gray-800);
+  background-color: var(--color-white);
+  min-height: 100vh;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-gray-900);
+}
+
+h1 {
+  font-size: var(--font-size-5xl);
+}
+
+h2 {
+  font-size: var(--font-size-4xl);
+}
+
+h3 {
+  font-size: var(--font-size-3xl);
+}
+
+h4 {
+  font-size: var(--font-size-2xl);
+}
+
+h5 {
+  font-size: var(--font-size-xl);
+}
+
+h6 {
+  font-size: var(--font-size-lg);
+}
+
+p {
+  margin-bottom: var(--spacing-4);
+  line-height: var(--line-height-relaxed);
+}
+
+a {
+  color: var(--color-4);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-3);
+}
+
+/* Lists */
+ul, ol {
+  list-style: none;
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Form elements */
+input,
+textarea,
+select,
+button {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* Remove default button styles */
+button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+/* Remove focus outline but keep accessible */
+:focus-visible {
+  outline: 2px solid var(--color-4);
+  outline-offset: 2px;
+}
+
+/* Remove outline for mouse users */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Tables */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+
+/* Code */
+code,
+kbd,
+pre,
+samp {
+  font-family: var(--font-family-mono);
+  font-size: 1em;
+}
+
+pre {
+  background-color: var(--color-gray-100);
+  padding: var(--spacing-4);
+  border-radius: var(--border-radius-md);
+  overflow-x: auto;
+}
+
+/* Blockquote */
+blockquote {
+  border-left: 4px solid var(--color-4);
+  padding-left: var(--spacing-4);
+  margin-left: 0;
+  color: var(--color-gray-600);
+  font-style: italic;
+}
+
+/* HR */
+hr {
+  border: none;
+  border-top: 1px solid var(--color-gray-200);
+  margin: var(--spacing-8) 0;
+}
+
+/* Remove default styles for details and summary */
+details,
+summary {
+  display: block;
+}
+
+summary {
+  cursor: pointer;
+}
+
+/* Remove default styles for dialog */
+dialog {
+  border: none;
+  padding: 0;
+}
+
+/* Remove default styles for template */
+template {
+  display: none;
+}
+
+/* Accessibility */
+[hidden] {
+  display: none !important;
+}
+
+/* Remove default styles for abbr */
+abbr[title] {
+  text-decoration: underline dotted;
+  cursor: help;
+}
+
+/* Remove default styles for address */
+address {
+  font-style: normal;
+}
+
+/* Remove default styles for b and strong */
+b,
+strong {
+  font-weight: var(--font-weight-bold);
+}
+
+/* Remove default styles for i and em */
+i,
+em {
+  font-style: italic;
+}
+
+/* Remove default styles for small */
+small {
+  font-size: var(--font-size-sm);
+}
+
+/* Remove default styles for sub and sup */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+/* Remove default styles for mark */
+mark {
+  background-color: var(--color-warning);
+  color: var(--color-black);
+  padding: 0.125em 0.25em;
+}
+
+/* Remove default styles for dfn */
+dfn {
+  font-style: italic;
+}
+
+/* Remove default styles for var */
+var {
+  font-style: normal;
+  font-family: var(--font-family-mono);
+}
+
+/* Remove default styles for kbd */
+kbd {
+  background-color: var(--color-gray-200);
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--border-radius-sm);
+  padding: 0.125em 0.375em;
+  font-size: var(--font-size-sm);
+}
+
+/* Remove default styles for samp */
+samp {
+  background-color: var(--color-gray-100);
+  padding: 0.125em 0.375em;
+  border-radius: var(--border-radius-sm);
+}
+
+/* Remove default styles for q */
+q {
+  quotes: none;
+}
+
+q::before,
+q::after {
+  content: '';
+}
+
+/* Remove default styles for figure and figcaption */
+figure {
+  margin: 0;
+}
+
+figcaption {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-600);
+  text-align: center;
+  margin-top: var(--spacing-2);
+}
+
+/* Remove default styles for fieldset and legend */
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+legend {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin-bottom: var(--spacing-2);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-gray-900);
+}
+
+/* Remove default styles for progress */
+progress {
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+/* Remove default styles for meter */
+meter {
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+/* Remove default styles for output */
+output {
+  display: inline-block;
+}
+
+/* Remove default styles for picture */
+picture {
+  display: block;
+}
+
+/* Remove default styles for source */
+source {
+  display: none;
+}
+
+/* Remove default styles for track */
+track {
+  display: none;
+}
+
+/* Remove default styles for wbr */
+wbr {
+  display: none;
+}

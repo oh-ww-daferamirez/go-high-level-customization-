@@ -1,0 +1,467 @@
+/* ===================================
+   ESTILOS DE BOTONES
+   Go High Level Customization
+   =================================== */
+
+/* ===================================
+   BOTÓN BASE
+   =================================== */
+.ghl-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--btn-padding-y) var(--btn-padding-x);
+  font-size: var(--btn-font-size);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  border-radius: var(--btn-border-radius);
+  transition: all var(--btn-transition);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.ghl-btn:focus-visible {
+  outline: 2px solid var(--color-4);
+  outline-offset: 2px;
+}
+
+.ghl-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ===================================
+   BOTÓN PRIMARIO
+   =================================== */
+.ghl-btn-primary {
+  background-color: var(--color-4);
+  color: var(--color-white);
+  border-color: var(--color-4);
+}
+
+.ghl-btn-primary:hover:not(:disabled) {
+  background-color: var(--color-3);
+  border-color: var(--color-3);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.ghl-btn-primary:active:not(:disabled) {
+  background-color: var(--color-5);
+  border-color: var(--color-5);
+  transform: translateY(0);
+}
+
+/* ===================================
+   BOTÓN SECUNDARIO
+   =================================== */
+.ghl-btn-secondary {
+  background-color: var(--color-white);
+  color: var(--color-4);
+  border-color: var(--color-4);
+}
+
+.ghl-btn-secondary:hover:not(:disabled) {
+  background-color: var(--color-gray-50);
+  border-color: var(--color-3);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.ghl-btn-secondary:active:not(:disabled) {
+  background-color: var(--color-gray-100);
+  border-color: var(--color-5);
+  transform: translateY(0);
+}
+
+/* ===================================
+   BOTÓN GRADIENTE
+   =================================== */
+.ghl-btn-gradient {
+  background: var(--gradient-primary);
+  color: var(--color-white);
+  border-color: transparent;
+}
+
+.ghl-btn-gradient:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--color-2), var(--color-3));
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
+}
+
+.ghl-btn-gradient:active:not(:disabled) {
+  background: linear-gradient(135deg, var(--color-3), var(--color-5));
+  transform: translateY(0);
+}
+
+/* ===================================
+   BOTÓN GHOST (Transparente)
+   =================================== */
+.ghl-btn-ghost {
+  background-color: transparent;
+  color: var(--color-4);
+  border-color: transparent;
+}
+
+.ghl-btn-ghost:hover:not(:disabled) {
+  background-color: var(--color-gray-100);
+  color: var(--color-3);
+}
+
+.ghl-btn-ghost:active:not(:disabled) {
+  background-color: var(--color-gray-200);
+  color: var(--color-5);
+}
+
+/* ===================================
+   BOTÓN OUTLINE
+   =================================== */
+.ghl-btn-outline {
+  background-color: transparent;
+  color: var(--color-4);
+  border-color: var(--color-4);
+}
+
+.ghl-btn-outline:hover:not(:disabled) {
+  background-color: var(--color-4);
+  color: var(--color-white);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.ghl-btn-outline:active:not(:disabled) {
+  background-color: var(--color-5);
+  border-color: var(--color-5);
+  transform: translateY(0);
+}
+
+/* ===================================
+   BOTONES DE COLOR
+   =================================== */
+.ghl-btn-color-1 {
+  background-color: var(--color-1);
+  color: var(--color-white);
+  border-color: var(--color-1);
+}
+
+.ghl-btn-color-1:hover:not(:disabled) {
+  background-color: var(--color-2);
+  border-color: var(--color-2);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.ghl-btn-color-2 {
+  background-color: var(--color-2);
+  color: var(--color-white);
+  border-color: var(--color-2);
+}
+
+.ghl-btn-color-2:hover:not(:disabled) {
+  background-color: var(--color-3);
+  border-color: var(--color-3);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.ghl-btn-color-3 {
+  background-color: var(--color-3);
+  color: var(--color-white);
+  border-color: var(--color-3);
+}
+
+.ghl-btn-color-3:hover:not(:disabled) {
+  background-color: var(--color-4);
+  border-color: var(--color-4);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.ghl-btn-color-4 {
+  background-color: var(--color-4);
+  color: var(--color-white);
+  border-color: var(--color-4);
+}
+
+.ghl-btn-color-4:hover:not(:disabled) {
+  background-color: var(--color-5);
+  border-color: var(--color-5);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.ghl-btn-color-5 {
+  background-color: var(--color-5);
+  color: var(--color-white);
+  border-color: var(--color-5);
+}
+
+.ghl-btn-color-5:hover:not(:disabled) {
+  background-color: var(--color-4);
+  border-color: var(--color-4);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ===================================
+   BOTONES DE ESTADO
+   =================================== */
+.ghl-btn-success {
+  background-color: var(--color-success);
+  color: var(--color-white);
+  border-color: var(--color-success);
+}
+
+.ghl-btn-success:hover:not(:disabled) {
+  background-color: #059669;
+  border-color: #059669;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.ghl-btn-warning {
+  background-color: var(--color-warning);
+  color: var(--color-white);
+  border-color: var(--color-warning);
+}
+
+.ghl-btn-warning:hover:not(:disabled) {
+  background-color: #d97706;
+  border-color: #d97706;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.ghl-btn-error {
+  background-color: var(--color-error);
+  color: var(--color-white);
+  border-color: var(--color-error);
+}
+
+.ghl-btn-error:hover:not(:disabled) {
+  background-color: #dc2626;
+  border-color: #dc2626;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ===================================
+   TAMAÑOS DE BOTÓN
+   =================================== */
+.ghl-btn-sm {
+  padding: var(--spacing-2) var(--spacing-4);
+  font-size: var(--font-size-sm);
+  border-radius: var(--border-radius-sm);
+}
+
+.ghl-btn-md {
+  padding: var(--spacing-3) var(--spacing-6);
+  font-size: var(--font-size-base);
+  border-radius: var(--border-radius-md);
+}
+
+.ghl-btn-lg {
+  padding: var(--spacing-4) var(--spacing-8);
+  font-size: var(--font-size-lg);
+  border-radius: var(--border-radius-lg);
+}
+
+.ghl-btn-xl {
+  padding: var(--spacing-5) var(--spacing-10);
+  font-size: var(--font-size-xl);
+  border-radius: var(--border-radius-xl);
+}
+
+/* ===================================
+   BOTÓN BLOQUE (Ancho completo)
+   =================================== */
+.ghl-btn-block {
+  display: flex;
+  width: 100%;
+}
+
+/* ===================================
+   GRUPO DE BOTONES
+   =================================== */
+.ghl-btn-group {
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+.ghl-btn-group .ghl-btn {
+  margin: 0;
+  border-radius: 0;
+  border-right-width: 0;
+}
+
+.ghl-btn-group .ghl-btn:first-child {
+  border-top-left-radius: var(--btn-border-radius);
+  border-bottom-left-radius: var(--btn-border-radius);
+}
+
+.ghl-btn-group .ghl-btn:last-child {
+  border-top-right-radius: var(--btn-border-radius);
+  border-bottom-right-radius: var(--btn-border-radius);
+  border-right-width: 1px;
+}
+
+.ghl-btn-group .ghl-btn:hover {
+  z-index: 1;
+}
+
+/* ===================================
+   BOTÓN CON ICONO
+   =================================== */
+.ghl-btn-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.ghl-btn-icon svg {
+  width: 1.25em;
+  height: 1.25em;
+}
+
+/* ===================================
+   BOTÓN CIRCULAR
+   =================================== */
+.ghl-btn-circle {
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ghl-btn-circle-sm {
+  width: 2rem;
+  height: 2rem;
+}
+
+.ghl-btn-circle-lg {
+  width: 4rem;
+  height: 4rem;
+}
+
+/* ===================================
+   BOTÓN CON LOADING
+   =================================== */
+.ghl-btn-loading {
+  position: relative;
+  color: transparent !important;
+  pointer-events: none;
+}
+
+.ghl-btn-loading::after {
+  content: '';
+  position: absolute;
+  width: 1em;
+  height: 1em;
+  top: 50%;
+  left: 50%;
+  margin-left: -0.5em;
+  margin-top: -0.5em;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: ghl-btn-spin 0.6s linear infinite;
+}
+
+@keyframes ghl-btn-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===================================
+   BOTÓN CON BADGE
+   =================================== */
+.ghl-btn-badge-wrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.ghl-btn-badge {
+  position: absolute;
+  top: -0.5rem;
+  right: -0.5rem;
+  background-color: var(--color-error);
+  color: var(--color-white);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  padding: 0.125rem 0.375rem;
+  border-radius: 9999px;
+  min-width: 1.25rem;
+  text-align: center;
+}
+
+/* ===================================
+   BOTÓN FAB (Floating Action Button)
+   =================================== */
+.ghl-btn-fab {
+  position: fixed;
+  bottom: var(--spacing-6);
+  right: var(--spacing-6);
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  padding: 0;
+  box-shadow: var(--shadow-xl);
+  z-index: var(--z-index-fixed);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ghl-btn-fab:hover {
+  transform: scale(1.1);
+  box-shadow: var(--shadow-2xl);
+}
+
+/* ===================================
+   RESPONSIVE
+   =================================== */
+@media (max-width: 768px) {
+  .ghl-btn-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .ghl-btn-group .ghl-btn {
+    width: 100%;
+    border-right-width: 1px;
+    border-bottom-width: 0;
+  }
+
+  .ghl-btn-group .ghl-btn:first-child {
+    border-top-left-radius: var(--btn-border-radius);
+    border-top-right-radius: var(--btn-border-radius);
+    border-bottom-left-radius: 0;
+  }
+
+  .ghl-btn-group .ghl-btn:last-child {
+    border-bottom-left-radius: var(--btn-border-radius);
+    border-bottom-right-radius: var(--btn-border-radius);
+    border-top-right-radius: 0;
+  }
+
+  .ghl-btn-fab {
+    bottom: var(--spacing-4);
+    right: var(--spacing-4);
+    width: 3rem;
+    height: 3rem;
+  }
+}
