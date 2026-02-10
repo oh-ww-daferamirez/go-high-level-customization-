@@ -1,129 +1,124 @@
 /* =========================================
    ARM - GoHighLevel Custom Skin
-   Version: 2.0 (Clean Build)
+   Version: 2.1 (High Specificity Build)
    ========================================= */
 
 /* --- 1. Typography & Imports --- */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
-    /* Brand Palette */
     --arm-color-1: #4551d8;
-    /* Light Blue - Accents */
+    /* Light Blue */
     --arm-color-2: #373ebe;
-    /* Medium Blue - Active States */
+    /* Medium Blue */
     --arm-color-3: #292ca5;
-    /* Medium-Dark Blue - Secondary Buttons */
+    /* Medium-Dark */
     --arm-color-4: #181a8d;
-    /* Dark Blue - Primary Brand Color */
+    /* Dark Blue - Primary */
     --arm-color-5: #000675;
-    /* Very Dark Blue - Backgrounds/Sidebars */
-
-    /* Text Colors */
-    --arm-text-light: #ffffff;
-    --arm-text-dark: #333333;
-
-    /* Global Settings */
+    /* Very Dark Blue */
     --arm-font-family: 'Poppins', sans-serif;
-    --arm-border-radius: 8px;
 }
 
-/* --- 2. Global Resets & Typography --- */
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-span,
-div,
-a,
-button,
-input {
+/* --- 2. Force Typography --- */
+html body,
+html body div,
+html body p,
+html body span,
+html body h1,
+html body h2,
+html body h3,
+html body h4,
+html body button,
+html body input,
+html body .hl_wrapper * {
     font-family: var(--arm-font-family) !important;
 }
 
-h1,
-h2,
-h3,
-h4 {
-    font-weight: 600;
-    color: var(--arm-color-5);
-}
-
-/* --- 3. Sidebar Customization (Native GHL Sidebar) --- */
-/* Target the main sidebar wrapper */
-#sidebar-v2 {
-    background-color: var(--arm-color-5) !important;
-    border-right: 1px solid var(--arm-color-4) !important;
-}
-
-/* Sidebar Links */
-#sidebar-v2 .nav-link,
-#sidebar-v2 .nav-item a {
-    color: rgba(255, 255, 255, 0.7) !important;
-    font-weight: 400;
-    transition: all 0.3s ease;
-}
-
-/* Hover State */
-#sidebar-v2 .nav-link:hover,
-#sidebar-v2 .nav-item a:hover {
-    background-color: var(--arm-color-4) !important;
-    color: var(--arm-text-light) !important;
-    border-radius: var(--arm-border-radius);
-    padding-left: 15px !important;
-    /* Subtle slide effect */
-}
-
-/* Active State */
-#sidebar-v2 .nav-link.active,
-#sidebar-v2 .nav-item.active>a {
-    background-color: var(--arm-color-1) !important;
-    color: var(--arm-text-light) !important;
-    border-radius: var(--arm-border-radius);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* --- 4. Top Navigation Bar --- */
-.hl_header {
+/* --- 3. Header & Top Bar Force Overrides --- */
+#app .hl_header,
+#app .hl_header--controls,
+body .hl_header {
     background-color: #ffffff !important;
-    border-bottom: 2px solid var(--arm-color-1) !important;
+    border-bottom: 3px solid var(--arm-color-1) !important;
 }
 
-/* Hide unwanted GHL native elements if desired (optional cleanup) */
-/* header:not(.--agency).hl_header a#hl_header--help-icon { display: none; } */
+/* Header Icons (Top right) */
+#app .hl_header--controls .hl_header--recent-activities,
+#app .hl_header--controls a,
+#app .hl_header--controls button {
+    color: var(--arm-color-4) !important;
+}
 
-/* --- 5. Buttons & Interactive Elements --- */
-/* Primary Buttons */
-.btn.btn-primary,
-button.btn.btn-primary,
-.hl-btn-primary {
+/* Active/Hover states for top icons */
+#app .hl_header--controls .active,
+#app .hl_header--controls a:hover {
+    color: var(--arm-color-1) !important;
+}
+
+/* --- 4. Sidebar Force Overrides (The blue vertical bar) --- */
+#sidebar-v2,
+.sidebar-v2-location #sidebar-v2,
+.sidebar-v2-agency #sidebar-v2 {
+    background-color: var(--arm-color-5) !important;
+}
+
+/* Sidebar Navigation Items */
+#sidebar-v2 .nav-link,
+#sidebar-v2 a.nav-link,
+#sidebar-v2 .hl_nav-header nav a {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+#sidebar-v2 .nav-link:hover,
+#sidebar-v2 .hl_nav-header nav a:hover {
+    background-color: var(--arm-color-4) !important;
+    color: #ffffff !important;
+    border-radius: 8px !important;
+}
+
+#sidebar-v2 .nav-link.active,
+#sidebar-v2 .hl_nav-header nav a.active {
+    background-color: var(--arm-color-1) !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+}
+
+/* --- 5. Buttons (Primary & UI Elements) --- */
+/* Target almost all primary buttons in GHL */
+#app .btn-primary,
+#app button.btn-primary,
+#app .hl-btn-primary,
+#app .btn-blue,
+#app button[type="submit"]:not(.btn-light),
+#app .edit-dashboard-btn {
+    /* Specific for your screenshot */
     background-color: var(--arm-color-1) !important;
     border-color: var(--arm-color-1) !important;
-    color: var(--arm-text-light) !important;
-    border-radius: var(--arm-border-radius) !important;
+    color: #ffffff !important;
+    box-shadow: 0 2px 4px rgba(69, 81, 216, 0.3) !important;
 }
 
-.btn.btn-primary:hover,
-button.btn.btn-primary:hover {
+#app .btn-primary:hover,
+#app button.btn-primary:hover {
     background-color: var(--arm-color-2) !important;
     border-color: var(--arm-color-2) !important;
 }
 
-/* Success Buttons (Green usually, but can be branded) */
-.btn-success {
-    background-color: #28a745 !important;
-    /* Keep semantic green or change to brand? Keeping green for standard UX */
+/* Custom specific class for your screenshot button */
+.btn.btn-primary.btn-sm.flex.items-center {
+    background-color: var(--arm-color-1) !important;
 }
 
-/* --- 6. Mobile & Responsive --- */
-@media (max-width: 768px) {
+/* --- 6. Dashboard & Cards --- */
+#app .hl_dashboard--card,
+#app .card {
+    border-radius: 12px !important;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+}
 
-    /* Adjust sidebar for mobile if needed */
-    #sidebar-v2 {
-        background-color: var(--arm-color-4) !important;
-    }
+/* --- 7. Fix for White Flashing (Optional) --- */
+body {
+    transition: background-color 0.2s ease;
 }
