@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: "Poppins", Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 40px;
+}
+
+.sidebar-v2-location .hl_wrapper.hl_topbar-tabs .hl_wrapper--inner ul.header-ul li a:hover,
+.sidebar-v2-location .hl_wrapper.hl_topbar-tabs .hl_wrapper--inner ul.header-ul li.active a {
+    color: #188bf6;
+}
+
+header:not(.--agency).hl_header a#hl_header--help-icon,
+header:not(.--agency).hl_header a#canny_logs-toggle {
+    display: none
+}
+
+.hl_header--recent-activities.-notification:before {
+    background: #FE5151;
+}
+
+header {
+    border-left: 1px solid var(--header-nav-bg) !important;
+}
+
+.sidebar-v2-location .hl_header {
+    width: calc(100vw - 17rem);
+}
+
+/* NAVBAR */
+.navbar {
+    height: 100vh;
+    width: 3.125rem;
+    min-width: 3.125rem;
+    background-color: #4142FD;
+}
+
+#navbar .menu-item {
+    cursor: pointer;
+    padding: 8px 6px !important;
+    transition: .3s;
+}
+
+#navbar .menu-item:hover,
+.menu-item.menu-item-active {
+    color: #2D2E51 !important;
+    text-decoration: none !important;
+    background-color: rgba(255, 255, 255, 0.3) !important;
+    width: 3rem !important;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.nav-header {
+    background-color: #2d2e51;
+    border-bottom: 1px solid #dee2e6;
+    height: 50px;
+    padding: 10px 10px 0;
+}
+
+.icon-magick-2lg {
+    width: 20px;
+    height: 20px;
+}
+
+/*  */
+
+/* AGENCY */
+.sidebar-v2-agency .hl_header {
+    width: calc(100vw - 16.5rem);
+}
+
+/* */
+
+/* SIDEBAR */
+
+#quickActions {
+    background-color: #4142FD !important
+}
+
+/* */
+/* CONVERSATIONS*/
+.hl_conversations--message-header button.btn.btn-light {
+    border: none !important;
+    color: #4142FD !important
+}
+
+.hl_conversations--message-header button.btn.btn-light:hover {
+    background: transparent !important;
+}
+
+nav[aria-label="Tabs"] a:active {
+    color: #4142FD !important;
+    border-color: #4142FD;
+}
+
+#conversations {
+    width: calc(100vw - 18rem) !important;
+}
+
+/* */
+
+/* AUTOMATION */
+.sidebar-v2-location .hl_topbar-tabs #workflowBuilder {
+    width: calc(100vw - 17rem) !important;
+}
+
+/* */
+
+/* AGENCY */
+
+#sb_agency-partners {
+    display: none
+}
+
+/* */
+
+/* DASHBOARD */
+.sidebar-v2-location .hl_wrapper--inner {
+    width: calc(100vw - 16rem) !important;
+}
+
+/* */
+/* OPPORTUNITIES */
+#OpportunitiesList {
+    width: calc(100vw - 17rem) !important;
+}
+
+.agency-dash .processing-stats {
+    padding: 0px 10px !important;
+    border-radius: 6px !important;
+    height: 30px;
+}
+
+/* */
+
+/* MARKETING */
+.sidebar-v2-location .hl_topbar-tabs#socialMediaPlanner {
+    width: calc(100vw - 17rem) !important;
+}
+
+/* */
+/* ajusta el ancho de la vista de mi perfil */
+
+.sidebar-v2-location .hl_settings--body,
+.sidebar-v2-location .hl_allphonenumber--container {
+    width: calc(100vw - 17rem);
+}
+
+/* RESPONSIVE */
+@media (max-width: 991.98px) {
+    .sidebar-v2-agency .hl_wrapper {
+        width: calc(100vw - 6rem);
+    }
+
+    .sidebar-v2-agency .hl_header {
+        width: calc(100vw - 6.5rem);
+    }
+
+    .sidebar-v2-location .hl_header {
+        width: calc(100vw - 6.5rem) !important;
+    }
+
+    .hl_wrapper .hl_without-topbar {
+        width: calc(100vw - 6rem);
+    }
+
+    .sidebar-v2-location .hl_wrapper--inner {
+        width: calc(100vw - 6rem) !important;
+        padding-right: 0.5rem;
+    }
+
+    .sidebar-v2-location .hl_wrapper {
+        width: calc(100vw - 6rem) !important;
+    }
+
+    /* SOCIAL PLANNER */
+    .sidebar-v2-location .hl_topbar-tabs#socialMediaPlanner {
+        width: calc(100vw - 5.5rem) !important;
+    }
+
+    .sidebar-v2-location .hl_topbar-tabs {
+        padding-top: 115px;
+    }
+
+    /* AUTOMATION */
+
+    .sidebar-v2-location .hl_topbar-tabs #workflowBuilder {
+        width: calc(100vw - 5.5rem) !important;
+    }
+
+    /* SIDEBAR */
+    #quickActions {
+        margin-left: 0px;
+    }
+
+    .sidebar-v2-agency #sidebar-v2 #location-switcher-sidbar-v2,
+    .sidebar-v2-location #sidebar-v2 #location-switcher-sidbar-v2 {
+        margin: 0px 5px;
+    }
+
+    .sidebar-v2-location #sidebar-v2 .hl_nav-header nav a {
+        margin: 5px 0px;
+    }
+
+    .sidebar-v2-location #sidebar-v2 .hl_nav-settings {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    #globalSearchOpener {
+        display: none;
+    }
+
+    .sidebar-v2-location #sidebar-v2 .flex-col a img {
+        left: 0px;
+        padding: 1px;
+    }
+
+    .sidebar-v2-location #sidebar-v2 .flex-col a span.mr-2 {
+        left: 0px !important;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .sidebar-v2-agency .hl_wrapper {
+        width: calc(100vw - 5.5rem);
+        margin-left: 6rem;
+    }
+}
+
+/* */
