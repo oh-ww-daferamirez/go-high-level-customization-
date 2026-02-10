@@ -1,8 +1,9 @@
 /**
  * GoHighLevel Customization - ARM Project
- * Version: 2.4 (Fail-Safe Build)
+ * Version: 2.5 (Conditional Role Build)
  * 
- * This version includes a JS-based hiding mechanism in case CSS doesn't load.
+ * This version hides GHL elements ONLY for regular users.
+ * Admins/Agency owners will still see them for support and maintenance.
  */
 
 (function () {
@@ -21,22 +22,45 @@
         ]
     };
 
+    /**
+     * Detects if the current user should have "Admin" visibility.
+     * Returns true if the user is in Agency view or has Admin attributes.
+     */
+    function isAdmin() {
+        // 1. Check if URL contains 'agency'
+        if (window.location.href.includes('/v2/location/agency')) return true;
+
+        // 2. Check GHL Global User Object (if available)
+        if (window.user && (window.user.role === 'admin' || window.user.type === 'agency')) return true;
+
+        // 3. Check for specific GHL body classes that indicate agency context
+        if (document.body.classList.contains('agency-view')) return true;
+
+        return false;
+    }
+
     function hideElements() {
+        // Only hide if NOT an admin
+        if (isAdmin()) {
+            console.log("ARM Custom Skin: Admin detected. Showing all tools.");
+            return;
+        }
+
         CONFIG.selectorsToHide.forEach(selector => {
             const elements = document.querySelectorAll(selector);
             elements.forEach(el => {
-                el.style.display = 'none';
+                el.style.display = 'none !important'; // CSS property direct
+                el.style.setProperty('display', 'none', 'important');
                 el.style.visibility = 'hidden';
-                el.style.opacity = '0';
-                el.style.width = '0';
-                el.style.pointerEvents = 'none';
             });
         });
     }
 
     function init() {
-        console.log("ARM Custom Skin v2.4: Initializing...");
+        console.log("ARM Custom Skin v2.5: Initializing...");
         updateFavicon();
+
+        // Initial run
         hideElements();
 
         // Continuous observer to handle GHL dynamic loading
