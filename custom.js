@@ -1,9 +1,8 @@
 /**
  * GoHighLevel Customization - ARM Project
- * Version: 2.5 (Conditional Role Build)
+ * Version: 3.0 (Reliability Build - Unified Single File)
  * 
- * This version hides GHL elements ONLY for regular users.
- * Admins/Agency owners will still see them for support and maintenance.
+ * INTERNALIZES ALL CSS TO ENSURE BRANDING LOADS EVEN IF EXTERNAL FILES FAIL.
  */
 
 (function () {
@@ -11,61 +10,52 @@
 
     const CONFIG = {
         favicon: "https://placehold.co/32x32?text=ARM",
-        selectorsToHide: [
-            '#hl_header--help-icon',
-            '.hl_header--ai-assistant',
-            '#canny_logs-toggle',
-            '.hl_header--recent-activities',
-            '[id*="help-icon"]',
-            '[class*="ai-assistant"]',
-            '[id*="canny"]'
-        ]
+        brandCSS: `
+            /* Clean Reset & Variables */
+            @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+            
+            :root {
+                --arm-color-1: #4551d8;
+                --arm-color-4: #181a8d;
+                --arm-color-5: #000675;
+                --arm-font-family: 'Poppins', sans-serif;
+            }
+
+            /* Force Branding */
+            html body, html body .hl_wrapper * { font-family: var(--arm-font-family) !important; }
+            
+            #sidebar-v2, .sidebar-v2-location #sidebar-v2 { 
+                background-color: var(--arm-color-5) !important; 
+            }
+
+            #app .hl_header, body .hl_header {
+                background-color: #ffffff !important;
+                border-bottom: 3px solid var(--arm-color-1) !important;
+            }
+
+            #app .btn-primary, #app .edit-dashboard-btn {
+                background-color: var(--arm-color-1) !important;
+                border-color: var(--arm-color-1) !important;
+            }
+
+            /* White Label Hiding */
+            #app #hl_header--help-icon, 
+            .hl_header--ai-assistant, 
+            #canny_logs-toggle,
+            .hl_header--recent-activities,
+            [id*="help-icon"], 
+            [class*="ai-assistant"] { 
+                display: none !important; 
+            }
+        `
     };
 
-    /**
-     * Detects if the current user should have "Admin" visibility.
-     * Returns true if the user is in Agency view or has Admin attributes.
-     */
-    function isAdmin() {
-        // 1. Check if URL contains 'agency'
-        if (window.location.href.includes('/v2/location/agency')) return true;
-
-        // 2. Check GHL Global User Object (if available)
-        if (window.user && (window.user.role === 'admin' || window.user.type === 'agency')) return true;
-
-        // 3. Check for specific GHL body classes that indicate agency context
-        if (document.body.classList.contains('agency-view')) return true;
-
-        return false;
-    }
-
-    function hideElements() {
-        // Only hide if NOT an admin
-        if (isAdmin()) {
-            console.log("ARM Custom Skin: Admin detected. Showing all tools.");
-            return;
-        }
-
-        CONFIG.selectorsToHide.forEach(selector => {
-            const elements = document.querySelectorAll(selector);
-            elements.forEach(el => {
-                el.style.display = 'none !important'; // CSS property direct
-                el.style.setProperty('display', 'none', 'important');
-                el.style.visibility = 'hidden';
-            });
-        });
-    }
-
-    function init() {
-        console.log("ARM Custom Skin v2.5: Initializing...");
-        updateFavicon();
-
-        // Initial run
-        hideElements();
-
-        // Continuous observer to handle GHL dynamic loading
-        const observer = new MutationObserver(hideElements);
-        observer.observe(document.body, { childList: true, subtree: true });
+    function injectStyles() {
+        if (document.getElementById('arm-custom-styles')) return;
+        const style = document.createElement('style');
+        style.id = 'arm-custom-styles';
+        style.textContent = CONFIG.brandCSS;
+        document.head.appendChild(style);
     }
 
     function updateFavicon() {
@@ -76,6 +66,19 @@
             document.head.appendChild(link);
         }
         link.href = CONFIG.favicon;
+    }
+
+    function init() {
+        console.log("ARM Custom Skin v3.0: Initializing (Unified)...");
+        injectStyles();
+        updateFavicon();
+
+        // Ensure styles stay injected if GHL wipes the head (can happen on route changes)
+        const observer = new MutationObserver(() => {
+            injectStyles();
+            updateFavicon();
+        });
+        observer.observe(document.head, { childList: true });
     }
 
     if (document.readyState === 'loading') {
