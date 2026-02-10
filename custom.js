@@ -1,32 +1,49 @@
 /**
  * GoHighLevel Customization - ARM Project
- * Version: 2.0 (Clean Build)
+ * Version: 2.4 (Fail-Safe Build)
  * 
- * This script handles dynamic logic for the custom skin.
- * It does NOT inject a custom sidebar, relying instead on CSS for visual customization.
+ * This version includes a JS-based hiding mechanism in case CSS doesn't load.
  */
 
 (function () {
     'use strict';
 
-    // Configuration
     const CONFIG = {
-        favicon: "https://placehold.co/32x32?text=ARM", // Replace with real URL when available
-        brandName: "ARM Custom Skin"
+        favicon: "https://placehold.co/32x32?text=ARM",
+        selectorsToHide: [
+            '#hl_header--help-icon',
+            '.hl_header--ai-assistant',
+            '#canny_logs-toggle',
+            '.hl_header--recent-activities',
+            '[id*="help-icon"]',
+            '[class*="ai-assistant"]',
+            '[id*="canny"]'
+        ]
     };
 
-    /**
-     * Initialize Customizations
-     */
-    function init() {
-        console.log("ARM Custom Skin: Initializing...");
-        updateFavicon();
-        // Add more initialization logic here if needed (e.g., changing page titles)
+    function hideElements() {
+        CONFIG.selectorsToHide.forEach(selector => {
+            const elements = document.querySelectorAll(selector);
+            elements.forEach(el => {
+                el.style.display = 'none';
+                el.style.visibility = 'hidden';
+                el.style.opacity = '0';
+                el.style.width = '0';
+                el.style.pointerEvents = 'none';
+            });
+        });
     }
 
-    /**
-     * Update the browser favicon
-     */
+    function init() {
+        console.log("ARM Custom Skin v2.4: Initializing...");
+        updateFavicon();
+        hideElements();
+
+        // Continuous observer to handle GHL dynamic loading
+        const observer = new MutationObserver(hideElements);
+        observer.observe(document.body, { childList: true, subtree: true });
+    }
+
     function updateFavicon() {
         let link = document.querySelector("link[rel~='icon']");
         if (!link) {
@@ -37,20 +54,9 @@
         link.href = CONFIG.favicon;
     }
 
-    // Run initialization when DOM is ready
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
         init();
     }
-
-    // Optional: Observer for dynamic content changes (if needed for advanced tweaks)
-    /*
-    const observer = new MutationObserver((mutations) => {
-        // Logic to handle GHL dynamic URL changes or DOM updates
-    });
-    
-    observer.observe(document.body, { childList: true, subtree: true });
-    */
-
 })();
