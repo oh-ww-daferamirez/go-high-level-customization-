@@ -122,3 +122,23 @@ body .hl_header {
 body {
     transition: background-color 0.2s ease;
 }
+
+/* --- 8. White Label - Hide Native GHL Elements --- */
+/* Hide Help Icon (?) */
+#app #hl_header--help-icon,
+body #hl_header--help-icon {
+    display: none !important;
+}
+
+/* Hide Changelog (Gift Box icon/Wave) */
+#app #canny_logs-toggle,
+#app .hl_header--recent-activities,
+body #canny_logs-toggle {
+    display: none !important;
+}
+
+/* Hide Support/Feedback buttons if necessary */
+#app .hl_header--controls a[href*="support"],
+#app .hl_header--controls a[href*="help"] {
+    display: none !important;
+}
