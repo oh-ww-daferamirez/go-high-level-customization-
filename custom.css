@@ -1,6 +1,6 @@
 /* =========================================
    ARM - GoHighLevel Custom Skin
-   Version: 2.1 (High Specificity Build)
+   Version: 2.3 (Nuclear White-Label Build)
    ========================================= */
 
 /* --- 1. Typography & Imports --- */
@@ -8,137 +8,73 @@
 
 :root {
     --arm-color-1: #4551d8;
-    /* Light Blue */
     --arm-color-2: #373ebe;
-    /* Medium Blue */
     --arm-color-3: #292ca5;
-    /* Medium-Dark */
     --arm-color-4: #181a8d;
-    /* Dark Blue - Primary */
     --arm-color-5: #000675;
-    /* Very Dark Blue */
     --arm-font-family: 'Poppins', sans-serif;
 }
 
 /* --- 2. Force Typography --- */
 html body,
-html body div,
-html body p,
-html body span,
-html body h1,
-html body h2,
-html body h3,
-html body h4,
-html body button,
-html body input,
 html body .hl_wrapper * {
     font-family: var(--arm-font-family) !important;
 }
 
-/* --- 3. Header & Top Bar Force Overrides --- */
+/* --- 3. Header & Icons Force Overrides --- */
 #app .hl_header,
-#app .hl_header--controls,
 body .hl_header {
     background-color: #ffffff !important;
     border-bottom: 3px solid var(--arm-color-1) !important;
 }
 
-/* Header Icons (Top right) */
-#app .hl_header--controls .hl_header--recent-activities,
-#app .hl_header--controls a,
-#app .hl_header--controls button {
-    color: var(--arm-color-4) !important;
-}
-
-/* Active/Hover states for top icons */
-#app .hl_header--controls .active,
-#app .hl_header--controls a:hover {
-    color: var(--arm-color-1) !important;
-}
-
-/* --- 4. Sidebar Force Overrides (The blue vertical bar) --- */
+/* --- 4. Sidebar Force Overrides --- */
 #sidebar-v2,
-.sidebar-v2-location #sidebar-v2,
-.sidebar-v2-agency #sidebar-v2 {
+.sidebar-v2-location #sidebar-v2 {
     background-color: var(--arm-color-5) !important;
 }
 
-/* Sidebar Navigation Items */
-#sidebar-v2 .nav-link,
-#sidebar-v2 a.nav-link,
-#sidebar-v2 .hl_nav-header nav a {
-    color: rgba(255, 255, 255, 0.8) !important;
-}
-
-#sidebar-v2 .nav-link:hover,
-#sidebar-v2 .hl_nav-header nav a:hover {
-    background-color: var(--arm-color-4) !important;
-    color: #ffffff !important;
-    border-radius: 8px !important;
-}
-
-#sidebar-v2 .nav-link.active,
-#sidebar-v2 .hl_nav-header nav a.active {
-    background-color: var(--arm-color-1) !important;
-    color: #ffffff !important;
-    font-weight: 600 !important;
-}
-
-/* --- 5. Buttons (Primary & UI Elements) --- */
-/* Target almost all primary buttons in GHL */
+/* --- 5. Buttons --- */
 #app .btn-primary,
-#app button.btn-primary,
-#app .hl-btn-primary,
-#app .btn-blue,
-#app button[type="submit"]:not(.btn-light),
 #app .edit-dashboard-btn {
-    /* Specific for your screenshot */
     background-color: var(--arm-color-1) !important;
     border-color: var(--arm-color-1) !important;
-    color: #ffffff !important;
-    box-shadow: 0 2px 4px rgba(69, 81, 216, 0.3) !important;
 }
 
-#app .btn-primary:hover,
-#app button.btn-primary:hover {
-    background-color: var(--arm-color-2) !important;
-    border-color: var(--arm-color-2) !important;
-}
+/* --- 8. White Label - Hide Native GHL Elements (AGRESSIVE) --- */
 
-/* Custom specific class for your screenshot button */
-.btn.btn-primary.btn-sm.flex.items-center {
-    background-color: var(--arm-color-1) !important;
-}
-
-/* --- 6. Dashboard & Cards --- */
-#app .hl_dashboard--card,
-#app .card {
-    border-radius: 12px !important;
-    border: 1px solid #e5e7eb !important;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
-}
-
-/* --- 7. Fix for White Flashing (Optional) --- */
-body {
-    transition: background-color 0.2s ease;
-}
-
-/* --- 8. White Label - Hide Native GHL Elements --- */
-/* Hide Help Icon (?) */
+/* 1. Hide Help Icon (?) */
 #app #hl_header--help-icon,
-body #hl_header--help-icon {
+#app [id*="help-icon"],
+body .hl_header--help-icon {
     display: none !important;
 }
 
-/* Hide Changelog (Gift Box icon/Wave) */
+/* 2. Hide Changelog / Recent Activities (Megaphone/Gift) */
 #app #canny_logs-toggle,
 #app .hl_header--recent-activities,
-body #canny_logs-toggle {
+#app [id*="canny"],
+#app [class*="recent-activities"] {
     display: none !important;
 }
 
-/* Hide Support/Feedback buttons if necessary */
+/* 3. Hide AI Assistant (Sparkles icon) */
+#app .hl_header--ai-assistant,
+#app [class*="ai-assistant"],
+#app [id*="ai-assistant"] {
+    display: none !important;
+}
+
+/* 4. Hide Support/Feedback buttons in header controls */
 #app .hl_header--controls a[href*="support"],
-#app .hl_header--controls a[href*="help"] {
+#app .hl_header--controls a[href*="help"],
+#app .hl_header--controls button[title*="Support"],
+#app .hl_header--controls button[title*="Help"] {
+    display: none !important;
+}
+
+/* 5. Hide GHL specific logos if they appear in top bar */
+#app .hl_header--logo,
+#app #ghl-logo {
     display: none !important;
 }
