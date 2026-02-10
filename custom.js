@@ -1,42 +1,81 @@
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://arm-scripts.magickhub.com/custom-fields/script-ghl.js?v1.0"></script>
-<script src="https://arm-scripts.magickhub.com/route-planner/public/js/script-ghl.js?v1.0"></script>
+/**
+ * Go High Level Customization - ARM Project
+ * Pure JavaScript Version (Fixes Syntax Errors in IDE)
+ */
 
-<script>
-    $(document).ready(function() {
-        // Cambia el icono del favicon
-        let isotipoUrl = "https://arm-scripts.magickhub.com/isotipo-magick.png"
-        let faviconElement = $('head link[rel="icon"]');
-        faviconElement.attr('href', isotipoUrl);
+(function () {
+    // Utility to load external scripts dynamically
+    function loadScript(src, callback) {
+        let script = document.createElement('script');
+        script.src = src;
+        script.async = true;
+        script.onload = callback;
+        document.head.appendChild(script);
+    }
 
-        observeDomChanges();
-        domObserver();
+    // Dependency URLs
+    const scripts = [
+        "https://arm-scripts.magickhub.com/custom-fields/script-ghl.js?v1.0",
+        "https://arm-scripts.magickhub.com/route-planner/public/js/script-ghl.js?v1.0"
+    ];
 
-        $(".message-header-actions button:first-of-type").removeClass("inline-flex");
+    function init() {
+        $(document).ready(function () {
+            // Cambia el icono del favicon
+            let isotipoUrl = "https://arm-scripts.magickhub.com/isotipo-magick.png"
+            let faviconElement = $('head link[rel="icon"]');
+            faviconElement.attr('href', isotipoUrl);
 
-        // CALENDAR
-        let calendarV2Element = $("#calendar-v2");
+            observeDomChanges();
+            domObserver();
 
-        if (calendarV2Element.length > 0) {
-            calendarV2Element.find(".container-fluid .d-flex.justify-content-between.mb-3").addClass(
-                "flex-wrap");
-            calendarV2Element.find(
-                ".container-fluid .d-flex.justify-content-between.mb-3.flex-wrap .d-flex.align-items-center.order-last"
-            ).addClass("pt-3 pt-lg-0");
-        }
+            $(".message-header-actions button:first-of-type").removeClass("inline-flex");
 
-        $(window).on('resize', function() {
-            var pageWidth = $(window).width();
+            // CALENDAR
+            let calendarV2Element = $("#calendar-v2");
 
-            if (pageWidth < 768) {
-                $('#navbar').addClass('d-none');
-                $('#sb_conversations').addClass('d-none');
-            } else {
-                $('#navbar').removeClass('d-none');
-                $('#sb_conversations').removeClass('d-none');
+            if (calendarV2Element.length > 0) {
+                calendarV2Element.find(".container-fluid .d-flex.justify-content-between.mb-3").addClass(
+                    "flex-wrap");
+                calendarV2Element.find(
+                    ".container-fluid .d-flex.justify-content-between.mb-3.flex-wrap .d-flex.align-items-center.order-last"
+                ).addClass("pt-3 pt-lg-0");
             }
+
+            $(window).on('resize', function () {
+                var pageWidth = $(window).width();
+
+                if (pageWidth < 768) {
+                    $('#navbar').addClass('d-none');
+                    $('#sb_conversations').addClass('d-none');
+                } else {
+                    $('#navbar').removeClass('d-none');
+                    $('#sb_conversations').removeClass('d-none');
+                }
+            });
         });
-    });
+    }
+
+    function loadDependencies() {
+        let loaded = 0;
+        scripts.forEach(src => {
+            loadScript(src, () => {
+                loaded++;
+                if (loaded === scripts.length) {
+                    init();
+                }
+            });
+        });
+    }
+
+    // Check if jQuery is already loaded (GHL usually provides it)
+    if (typeof jQuery === 'undefined') {
+        loadScript("https://code.jquery.com/jquery-3.5.1.min.js", loadDependencies);
+    } else {
+        loadDependencies();
+    }
+
+    // --- Sub-functions ---
 
     function refreshNav() {
         if ($("#navbar").length == 0) {
@@ -44,8 +83,6 @@
         } else {
             $("#navbar").html("");
         }
-
-        let urlServer = "https://dwh-services.magickhub.com/file_frontend/";
 
         $("#navbar").addClass("navbar");
         $("#navbar").append(`
@@ -93,19 +130,17 @@
                </ul>
            </ul>
        </div>
-         `);
+          `);
     }
 
-    
     function observeDomChanges() {
-        var observer = new MutationObserver(function(mutations) {
-            mutations.forEach(function(mutation) {
+        var observer = new MutationObserver(function (mutations) {
+            mutations.forEach(function (mutation) {
                 if (mutation.addedNodes.length > 0) {
-                    mutation.addedNodes.forEach(function(node) {
+                    mutation.addedNodes.forEach(function (node) {
                         if (node.id === 'sidebar-v2') {
                             refreshNav();
                         } else {
-                            // Buscar si tiene un hijo con ID sidebar-v2
                             if ($(node).find('#sidebar-v2').length > 0) {
                                 refreshNav();
                             }
@@ -122,47 +157,36 @@
     }
 
     function adjustDomSize() {
-        // Ajuste de la pagina para que se vea el dashboard no cortado
         $(".sidebar-v2-location .hl_wrapper--inner").css(
             "max-width",
             "calc(100vw - 16rem)"
         );
-        // Ajuste de la pagina para que se vea el nav
         $(".sidebar-v2-location .hl_wrapper").css("width", "calc(100vw - 17rem)");
-
-        // Ajuste de la pagina para que se vea el dashboard no cortado
         $(".sidebar-v2-location .hl_wrapper--inner").css(
             "width",
             "calc(100vw - 16rem)"
         );
-        // Ajuste de la pagina para que se vea conversations no cortado
         $(".sidebar-v2-location #conversations .hl_wrapper--inner").css(
             "width",
             "calc(100vw - 18rem)"
         );
-        // Ajuste del ancho del calendario
         $(".sidebar-v2-location #calendar-v2 .hl_wrapper--inner").css(
             "width",
             "calc(100vw - 17rem)"
         );
-
-        //ajusta el tamaño del header cuando ya esta creado el nav
         $(".sidebar-v2-location .hl_header").css("width", "calc(100vw - 17rem)");
     }
 
     function domObserver() {
-        // Función que se ejecutará cuando el atributo data-parent cambie
         function dataParentChangeCallback() {
             $(".sidebar-v2-location .hl_wrapper").css(
                 "width",
                 "calc(100vw - 17rem)"
             );
             adjustDomSize();
-            // Ejecutar aquí la función
         }
 
-        // Observador de mutación para el atributo data-parent
-        var observerDataParent = new MutationObserver(function(mutationsList) {
+        var observerDataParent = new MutationObserver(function (mutationsList) {
             for (var mutation of mutationsList) {
                 if (
                     mutation.type === "attributes" &&
@@ -173,13 +197,10 @@
             }
         });
 
-        // Observar el elemento <body> y detectar cambios en el atributo data-parent
-            var targetNode = document.body;
-            var config = {
-                attributes: true
+        var targetNode = document.body;
+        var config = {
+            attributes: true
         };
-            observerDataParent.observe(targetNode, config);
-
-
+        observerDataParent.observe(targetNode, config);
     }
-    </script>
+})();
