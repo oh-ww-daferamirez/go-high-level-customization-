@@ -13,16 +13,16 @@
         document.head.appendChild(script);
     }
 
-    // Dependency URLs
+    // Dependency URLs - REMOVED FOR CLEAN-ROOM POLICY
     const scripts = [
-        "https://arm-scripts.magickhub.com/custom-fields/script-ghl.js?v1.0",
-        "https://arm-scripts.magickhub.com/route-planner/public/js/script-ghl.js?v1.0"
+        // "https://arm-scripts.magickhub.com/custom-fields/script-ghl.js?v1.0",
+        // "https://arm-scripts.magickhub.com/route-planner/public/js/script-ghl.js?v1.0"
     ];
 
     function init() {
         $(document).ready(function () {
             // Cambia el icono del favicon
-            let isotipoUrl = "https://arm-scripts.magickhub.com/isotipo-magick.png"
+            let isotipoUrl = "https://placehold.co/32x32?text=ARM"
             let faviconElement = $('head link[rel="icon"]');
             faviconElement.attr('href', isotipoUrl);
 
@@ -58,6 +58,10 @@
 
     function loadDependencies() {
         let loaded = 0;
+        if (scripts.length === 0) {
+            init();
+            return;
+        }
         scripts.forEach(src => {
             loadScript(src, () => {
                 loaded++;
@@ -89,42 +93,42 @@
        <div class="bm-nav-container d-flex flex-column">
            <ul class="d-flex flex-column align-items-center list-unstyled h100vh overflow-y-auto overflow-x-hidden">
                <li class="nav-header">
-                   <a href="https://bm.magickhub.com/" class="mx-auto">
-                       <img class="" src="https://storage.googleapis.com/msgsndr/rpmQMqtoI7BY5mdoNylk/media/64424a1efb31781dfa702796.png" alt="Isotipo ARM"/>
+                   <a href="#" class="mx-auto">
+                       <img class="" src="https://placehold.co/40x40?text=Logo" alt="Isotipo ARM"/>
                    </a>
                </li>
                <ul id="menu-nav-item-list" class="d-flex flex-column align-items-center list-unstyled flex-grow-1">
                    <li class="d-flex align-items-center mt-2 w-100">
-                       <a href="https://bm.magickhub.com/" target="_blank" class="menu-item d-flex flex-column align-items-center w-100">
-                           <img class=" icon-arm-2lg mb-1" src="https://storage.googleapis.com/msgsndr/rpmQMqtoI7BY5mdoNylk/media/685d1b736503b80c4c25f5a1.png" alt="communication"/>
+                       <a href="#" target="_blank" class="menu-item d-flex flex-column align-items-center w-100">
+                           <img class=" icon-arm-2lg mb-1" src="https://placehold.co/20x20?text=C" alt="communication"/>
                        </a>
                    </li>
                    <li class="d-flex align-items-center mt-2 w-100">
-                       <a href="https://ai.magickhub.com/customer/index" target="_blank" class="menu-item d-flex flex-column align-items-center w-100">
-                           <img class="  icon-arm-2lg mb-1" src="https://storage.googleapis.com/msgsndr/rpmQMqtoI7BY5mdoNylk/media/685d1b736503b84e1725f5a0.png" alt="intelligence"/>
+                       <a href="#" target="_blank" class="menu-item d-flex flex-column align-items-center w-100">
+                           <img class="  icon-arm-2lg mb-1" src="https://placehold.co/20x20?text=I" alt="intelligence"/>
                        </a>
                    </li>
                    <li class="d-flex align-items-center mt-2 w-100">
-                   <a href="https://arm.magickhub.com/" target="_blank" class="menu-item d-flex flex-column align-items-center w-100">
-                     <img class=" icon-arm-2lg mb-1" src="https://storage.googleapis.com/msgsndr/rpmQMqtoI7BY5mdoNylk/media/64708119e9b5553dd85394b8.png" alt="ARM"/>
+                   <a href="#" target="_blank" class="menu-item d-flex flex-column align-items-center w-100">
+                     <img class=" icon-arm-2lg mb-1" src="https://placehold.co/20x20?text=A" alt="ARM"/>
                    </a>
                    </li>
                    <li class="d-flex align-items-center mt-2 w-100">
-                        <a href="https://ffvv.magickhub.com/" target="_blank" class="menu-item d-flex flex-column align-items-center w-100">
-                            <img class=" icon-arm-2lg mb-1" src="https://storage.googleapis.com/msgsndr/7mQw6g1em2cTgLs6ePWn/media/6720a8b89935e754af409e95.png" alt="FFVV"/>
+                        <a href="#" target="_blank" class="menu-item d-flex flex-column align-items-center w-100">
+                            <img class=" icon-arm-2lg mb-1" src="https://placehold.co/20x20?text=F" alt="FFVV"/>
                         </a>
                    </li>
                    <li class="d-flex align-items-center mt-2 w-100">
-                       <a href="https://wiki.magickhub.com/" target="_blank" class="menu-item d-flex flex-column align-items-center w-100">
-                         <img class=" icon-arm-2lg mb-1" src="https://storage.googleapis.com/msgsndr/rpmQMqtoI7BY5mdoNylk/media/685d1b735cecae9d25d88700.png" alt="wiki"/>
+                       <a href="#" target="_blank" class="menu-item d-flex flex-column align-items-center w-100">
+                         <img class=" icon-arm-2lg mb-1" src="https://placehold.co/20x20?text=W" alt="wiki"/>
                        </a>
                    </li>
                </ul>
                <ul class="d-flex flex-column align-items-center list-unstyled h100vh overflow-y-auto overflow-x-hidden position-absolute bottom-0">
                    <li id="support-icon" class="d-flex align-items-center mt-auto mb-2 w-100">
-                       <a id="support-link" href="https://bm.magickhub.com/ticket/status/pending" target="_blank" 
+                       <a id="support-link" href="#" target="_blank" 
                        class="menu-item d-flex flex-column align-items-center w-100">
-                           <img class="icon-arm-2lg mb-1" src="https://storage.googleapis.com/msgsndr/rpmQMqtoI7BY5mdoNylk/media/64424b83fb31787da970285e.png" alt="support"/>
+                           <img class="icon-arm-2lg mb-1" src="https://placehold.co/20x20?text=S" alt="support"/>
                        </a>
 
                    </li>
