@@ -1,6 +1,6 @@
 /* =========================================
    ARM - GoHighLevel Custom Skin
-   Version: 14.0 (The Rescue Edition)
+   Version: 15.0 (Omni-Target Edition)
    ========================================= */
 
 /* --- 0. Design Tokens --- */
@@ -10,14 +10,11 @@
     --arm-surface-card: #FFFFFF !important;
     --arm-text-high: #111827 !important;
     --arm-text-medium: #374151 !important;
-    /* Dark Gray */
     --arm-text-inverse: #FFFFFF !important;
-    /* White */
     --arm-border-subtle: #E5E7EB !important;
     --arm-font-family: 'Poppins', sans-serif !important;
 }
 
-/* --- 1. Global Resets --- */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 html,
@@ -26,77 +23,49 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* --- 2. Sidebar: ISOLATED STYLING --- */
-/* Target CONTAINERS only */
+/* --- Sidebar --- */
 #sidebar-v2,
 .sidebar-v2-location #sidebar-v2,
 .hl_settings--sidebar,
-aside,
-nav[class*="sidebar"] {
+aside {
     background-color: var(--arm-surface-sidebar) !important;
     border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
-/* 
-   THE DANGEROUS WILDCARD - RESTRICTED 
-   Only target things that are NOT dropdowns/modals/inputs
-*/
-[id*="sidebar"] *:not(.dropdown-menu):not(.dropdown-item):not(input):not(select):not(textarea):not(.btn),
-aside *:not(.dropdown-menu):not(.dropdown-item):not(input):not(select):not(textarea):not(.btn) {
-    color: var(--arm-text-inverse) !important;
+/* Sidebar Text - CAREFUL */
+[id*="sidebar"] *:not(.dropdown-menu):not(.dropdown-item):not(.n-base-select-menu):not(.q-menu):not(.q-list),
+aside *:not(.dropdown-menu):not(.dropdown-item):not(.n-base-select-menu):not(.q-menu):not(.q-list) {
+    color: var(--arm-text-inverse) > !important;
     border-color: rgba(255, 255, 255, 0.1) !important;
 }
 
-/* --- 3. THE RESCUE RULES (Specificity War Winner) --- */
-/* Use #app body to artificially inflate specificity */
-#app .dropdown-menu,
+/* Note: The specificity above is deliberately kept lower than the white box rule below */
+
+/* --- THE OMNI-RESCUE RULE --- */
+/* Target every known "popover/dropdown" framework GHL uses: Bootstrap, Vue, Quasar, NaiveUI */
+
 #app .dropdown-menu *,
-/* CRITICAL: Target descendants */
-#app .multiselect__content-wrapper,
 #app .multiselect__content-wrapper *,
-#app .hl_switcher,
-#app .hl_switcher *,
-#app .card *,
-#app .modal
-/*,
-#app .modal * 
-{
-    color: var(--arm-text-medium) !important; /* Forces Dark Gray */
-fill: var(--arm-text-medium) !important;
-text-shadow: none !important;
+#app .n-dropdown-menu *,
+#app .n-base-select-menu *,
+#app .q-menu *,
+#app .q-list *,
+#app .hl_switcher * {
+    color: #374151 !important;
+    /* DARK GRAY FORCE */
+    fill: #374151 !important;
 }
 
-/* Fix Inputs inside exclusions */
-#app input,
-#app select,
-#app textarea {
-    background-color: #FFFFFF !important;
-    color: #111827 !important;
-    border: 1px solid #D1D5DB !important;
-}
-
-/* Fix Dropdown Backgrounds specifically */
+/* White Box Logic: If it looks like a card/dropdown, it gets dark text */
 .dropdown-menu,
-.multiselect__content-wrapper {
+.multiselect__content-wrapper,
+.n-base-select-menu,
+.q-menu {
     background-color: #FFFFFF !important;
     border: 1px solid #E5E7EB !important;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
 }
 
-/* Re-apply White ONLY to Active Items */
-.dropdown-item.active,
-.dropdown-item:active,
-.dropdown-item:hover {
-    background-color: var(--arm-primary) !important;
-    color: #FFFFFF !important;
-}
-
-.dropdown-item.active *,
-.dropdown-item:hover * {
-    color: #FFFFFF !important;
-}
-
-/* --- 4. Hide Logos --- */
+/* --- Hide GHL Logos --- */
 #app .hl_header--logo,
 #app #ghl-logo {
     display: none !important;
