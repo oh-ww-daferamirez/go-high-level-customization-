@@ -1,6 +1,6 @@
 /* =========================================
    ARM - GoHighLevel Custom Skin
-   Version: 31.0 (Header Harmonization)
+   Version: 30.1 (Rollback of Header Fixes)
    ========================================= */
 
 /* --- 0. Design Tokens (PASTEL LIGHT) --- */
@@ -41,51 +41,7 @@ aside {
     border-right: 1px solid rgba(255, 255, 255, 0.5) !important;
 }
 
-/* --- 2. HEADER HARMONIZATION (New in v31.0) --- */
-/* Notification Bell (Orange -> Indigo) */
-.hl_header .bg-orange-600,
-.n-badge .n-badge-sup {
-    background-color: var(--arm-mist-accent) !important;
-    /* Indigo */
-    color: #FFFFFF !important;
-    border: 1px solid var(--arm-mist-accent) !important;
-}
-
-.hl_header .bg-orange-600 *,
-.n-badge .n-badge-sup * {
-    color: #FFFFFF !important;
-    fill: #FFFFFF !important;
-}
-
-/* User Avatar (Random Colors -> Lavender/Indigo) */
-.hl_header .rounded-full,
-.hl_header_avatar,
-.n-avatar,
-.hl_header .bg-purple-600,
-.hl_header .bg-pink-600 {
-    /* Target common random GHL colors */
-    background-color: var(--arm-mist-start) !important;
-    /* Lavender */
-    color: var(--arm-mist-accent) !important;
-    /* Indigo Text */
-    border: 1px solid var(--arm-mist-accent) !important;
-}
-
-.hl_header .rounded-full *,
-.hl_header_avatar * {
-    color: var(--arm-mist-accent) !important;
-}
-
-/* Status Indicators (Harsh Green -> Modern Emerald) */
-.bg-green-500,
-.bg-green-600,
-.text-green-500 {
-    background-color: #10B981 !important;
-    /* Emerald 500 */
-    border-color: #10B981 !important;
-}
-
-/* --- 3. THE BLUE KILLER (Tier 1: SOLID/DARK) --- */
+/* --- 2. THE BLUE KILLER (Tier 1: SOLID/DARK) --- */
 [class*="bg-blue-"],
 [class*="bg-primary"],
 .bg-primary,
@@ -106,7 +62,7 @@ aside {
     fill: #FFFFFF !important;
 }
 
-/* --- 4. THE BLUE KILLER (Tier 2: LIGHT/PASTEL OVERRIDE) --- */
+/* --- 3. THE BLUE KILLER (Tier 2: LIGHT/PASTEL OVERRIDE) --- */
 [class*="bg-blue-50"],
 [class*="bg-blue-100"],
 [class*="bg-blue-200"],
@@ -134,7 +90,7 @@ aside {
     fill: var(--arm-mist-accent) !important;
 }
 
-/* --- 5. NAIVE UI BUTTONS (Specific Interaction Fixes) --- */
+/* --- 4. NAIVE UI BUTTONS (Specific Interaction Fixes) --- */
 .n-button--primary-type,
 .n-button--info-type,
 .n-button--success-type {
@@ -169,7 +125,7 @@ aside {
     fill: var(--arm-mist-accent) !important;
 }
 
-/* --- 6. SIDEBAR RECOVERY (Nuclear Contrast Fix) --- */
+/* --- 5. SIDEBAR RECOVERY (Nuclear Contrast Fix) --- */
 #sidebar-v2 .nav-link:not(.active),
 #sidebar-v2 .nav-link:not(.active) *,
 aside a:not(.active),
@@ -197,7 +153,7 @@ aside a.active * {
     background-color: transparent !important;
 }
 
-/* --- 7. BUTTON GEOMETRY --- */
+/* --- 6. BUTTON GEOMETRY --- */
 .btn,
 .hl_button,
 button,
@@ -215,7 +171,6 @@ button,
     gap: 8px !important;
 }
 
-/* n-button Relaxed */
 .n-button {
     display: inline-flex !important;
     align-items: center !important;
@@ -233,7 +188,7 @@ button,
     padding-right: 18px !important;
 }
 
-/* --- 8. Button Colors (Legacy / Wildcards) --- */
+/* --- 7. Button Colors (Legacy / Wildcards) --- */
 .btn-white,
 .btn-light,
 .hl_button--default,
@@ -256,7 +211,7 @@ button,
     fill: var(--arm-mist-accent) !important;
 }
 
-/* --- 9. Navigation, Forms, Reset --- */
+/* --- 8. Navigation, Forms, Reset --- */
 .nav-tabs .nav-link.active,
 .n-tabs-tab--active,
 .q-tab--active,
