@@ -1,20 +1,19 @@
-# ARM - GoHighLevel Custom Skin (v21.0 / v15.0)
+# ARM - GoHighLevel Custom Skin (v22.0 / v16.0)
 
 Este repositorio contiene la personalización visual (Skin) para GoHighLevel.
-**Versión 21.0 (Paper White)**: Eliminación total de fondos oscuros. Tema Blanco/Negro de alto contraste.
+**Versión 22.0 (Ethereal Mist)**: Tema claro pastel (Lavender/Baby Blue) con texto oscuro.
 
 ## 🚀 Instalación en GoHighLevel
 
 Para aplicar este diseño a tu agencia o sub-cuenta, ve a:
 **Settings** > **Company** (o Location) > **Custom Code**.
 
-### 1. Head Tracking Code (CSS v21.0)
+### 1. Head Tracking Code (CSS v22.0)
 ```html
-<link rel="stylesheet" href="https://go-high-level-customization.vercel.app/custom.css?v=21.0">
+<link rel="stylesheet" href="https://go-high-level-customization.vercel.app/custom.css?v=22.0">
 ```
 
-### 2. Body Tracking Code (JS v15.0)
-*(Sin cambios desde v15.0)*
+### 2. Body Tracking Code (JS v16.0)
 ```html
-<script src="https://go-high-level-customization.vercel.app/custom.js?v=15.0"></script>
+<script src="https://go-high-level-customization.vercel.app/custom.js?v=16.0"></script>
 ```

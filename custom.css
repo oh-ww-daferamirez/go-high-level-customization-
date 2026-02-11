@@ -1,17 +1,23 @@
 /* =========================================
    ARM - GoHighLevel Custom Skin
-   Version: 21.0 (Paper White / Zero Dark)
+   Version: 22.0 (Ethereal Mist)
    ========================================= */
 
-/* --- 0. Design Tokens (PURE WHITE) --- */
+/* --- 0. Design Tokens (PASTEL LIGHT) --- */
 :root {
-    --arm-bg-sidebar: #FFFFFF !important;
-    /* Force WHITE */
+    /* Palette: Morning Mist */
+    --arm-mist-start: #d7e3fc !important;
+    /* Lavender */
+    --arm-mist-end: #abc4ff !important;
+    /* Baby Blue Ice */
+    --arm-mist-text: #374151 !important;
+    /* Charcoal Gray */
+    --arm-mist-active: #FFFFFF !important;
+    /* Pure White */
+    --arm-mist-accent: #4F46E5 !important;
+    /* Indigo for Focus */
+
     --arm-bg-body: #F9FAFB !important;
-    /* Very Light Gray */
-    --arm-text-main: #000000 !important;
-    /* PITCH BLACK */
-    --arm-border: #E5E7EB !important;
     --arm-font-family: 'Poppins', sans-serif !important;
 }
 
@@ -23,18 +29,16 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* --- 1. Sidebar: REMOVE DARK BACKGROUND --- */
+/* --- 1. Sidebar: ETHEREAL GRADIENT --- */
 #sidebar-v2,
 .sidebar-v2-location #sidebar-v2,
 .hl_settings--sidebar,
 aside {
-    background-color: #FFFFFF !important;
-    /* OVERRIDE ANY DARK THEME */
-    background-image: none !important;
-    border-right: 1px solid #E5E7EB !important;
+    background: linear-gradient(180deg, var(--arm-mist-start) 0%, var(--arm-mist-end) 100%) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.5) !important;
 }
 
-/* --- 2. Sidebar Text: FORCE BLACK --- */
+/* --- 2. Sidebar Text: CHARCOAL (Contrast) --- */
 #sidebar-v2 .nav-link,
 .hl_settings--sidebar a,
 aside a,
@@ -42,20 +46,31 @@ aside a,
 #sidebar-v2 svg,
 aside svg,
 [class*="icon"] {
-    color: #000000 !important;
-    fill: #000000 !important;
+    color: var(--arm-mist-text) !important;
+    fill: var(--arm-mist-text) !important;
+    font-weight: 500 !important;
 }
 
-/* Active State (Light Gray background, Black text) */
+/* --- 3. Active State: PURE WHITE CARD --- */
 .nav-link.active,
 aside a.active {
-    background-color: #F3F4F6 !important;
-    /* Light Gray Highlight */
-    color: #000000 !important;
+    background-color: var(--arm-mist-active) !important;
+    color: var(--arm-mist-accent) !important;
+    /* Indigo Text */
+    box-shadow: 0 4px 6px rgba(171, 196, 255, 0.4) !important;
+    /* Soft Blue Shadow */
     font-weight: 600 !important;
+    border-radius: 8px !important;
 }
 
-/* --- 3. Content & Inputs (Standardize) --- */
+/* Icons in Active State */
+.nav-link.active svg,
+aside a.active svg {
+    fill: var(--arm-mist-accent) !important;
+    color: var(--arm-mist-accent) !important;
+}
+
+/* --- 4. Content Area --- */
 .card,
 .panel,
 .container-fluid,
@@ -64,29 +79,30 @@ input,
 select,
 textarea {
     background-color: #FFFFFF !important;
-    color: #000000 !important;
+    color: #111827 !important;
     border-color: #E5E7EB !important;
 }
 
-/* --- 4. Dropdowns (Force White/Black) --- */
+/* --- 5. Dropdowns (Clean White) --- */
 .dropdown-menu,
 .q-menu,
 .n-dropdown-menu {
     background-color: #FFFFFF !important;
-    color: #000000 !important;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+    color: #374151 !important;
+    border: 1px solid #E5E7EB !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
 }
 
 .dropdown-item,
 .dropdown-menu li {
-    color: #000000 !important;
+    color: #374151 !important;
 }
 
 .dropdown-item:hover {
     background-color: #F3F4F6 !important;
 }
 
-/* --- 5. Hide Logos --- */
+/* --- 6. Hide Logos --- */
 #app .hl_header--logo,
 #app #ghl-logo {
     display: none !important;

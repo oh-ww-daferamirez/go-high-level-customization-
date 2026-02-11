@@ -1,10 +1,10 @@
 /**
  * GoHighLevel Customization - ARM Project
- * Version: 15.0 (Clean Logic)
+ * Version: 16.0 (Functional Only)
  * 
  * Logic:
  * 1. Hide unwanted UI elements (Help, Branding).
- * 2. NO COLOR ENFORCEMENTS.
+ * 2. No Color Force.
  */
 
 (function () {
@@ -23,14 +23,11 @@
 
     function init() {
         console.clear();
-        console.log("%c ARM JS v15.0 (Clean Slate) LOADED ", "background: #333; color: #fff; font-size: 16px; padding: 6px;");
+        console.log("%c ARM JS v16.0 (Ethereal Ready) LOADED ", "background: #abc4ff; color: #374151; font-size: 16px; padding: 6px;");
 
-        // Inject Hiding CSS
         const style = document.createElement('style');
         style.textContent = CONFIG.hidingCSS;
         document.head.appendChild(style);
-
-        // NO LOOPS. NO COLOR FORCING.
     }
 
     if (document.readyState === 'loading') {
