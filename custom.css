@@ -1,79 +1,103 @@
 /* =========================================
    ARM - GoHighLevel Custom Skin
-   Version: 2.3 (Nuclear White-Label Build)
+   Version: 10.0 (Cache Buster Edition)
    ========================================= */
 
 /* --- 1. Typography & Imports --- */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
-    --arm-color-1: #4551d8;
-    --arm-color-2: #373ebe;
-    --arm-color-3: #292ca5;
-    --arm-color-4: #181a8d;
-    --arm-color-5: #000675;
-    --arm-font-family: 'Poppins', sans-serif;
+    /* USER PALETTE - FORCE */
+    --arm-primary: #6F44CC !important;
+    --arm-primary-hover: #5a37a6 !important;
+    --arm-sidebar-bg: #424A71 !important;
+    /* THE TARGET */
+    --arm-sidebar-hover: #586088 !important;
+    --arm-body-bg: #FAFAFD !important;
+    --arm-text-main: #2D334A !important;
+    --arm-border: #D8DAE9 !important;
+
+    --arm-font-family: 'Poppins', sans-serif !important;
 }
 
-/* --- 2. Force Typography --- */
+/* --- 2. Global Resets --- */
 html body,
 html body .hl_wrapper * {
-    font-family: var(--arm-font-family) !important;
+    font-family: var(--arm-font-family);
+    -webkit-font-smoothing: antialiased;
 }
 
-/* --- 3. Header & Icons Force Overrides --- */
+/* --- 3. Header --- */
 #app .hl_header,
 body .hl_header {
     background-color: #ffffff !important;
-    border-bottom: 3px solid var(--arm-color-1) !important;
+    border-bottom: 1px solid var(--arm-border) !important;
+    z-index: 99 !important;
 }
 
-/* --- 4. Sidebar Force Overrides --- */
+/* --- 4. Sidebar: TARGET EVERYTHING --- */
 #sidebar-v2,
-.sidebar-v2-location #sidebar-v2 {
-    background-color: var(--arm-color-5) !important;
+.sidebar-v2-location #sidebar-v2,
+#app .sidebar-v2,
+aside.sidebar-v2,
+div[id*="sidebar"],
+nav[class*="sidebar"],
+.n-layout-sider,
+.hl_settings--sidebar,
+/* Settings Specific */
+.settings-sidebar,
+.hl_nav_sidebar,
+aside {
+    background-color: var(--arm-sidebar-bg) !important;
+    background-image: none !important;
+    background: var(--arm-sidebar-bg) !important;
+    border-right: 1px solid #363d5e !important;
+}
+
+/* Helper for Tailwind generic sidebars often used in Settings */
+#app .w-64.flex-col.border-r {
+    background-color: var(--arm-sidebar-bg) !important;
+}
+
+/* Force Items/Text/Icons */
+#sidebar-v2 .nav-link,
+#sidebar-v2 .nav-item,
+.hl_settings--sidebar a,
+.hl_settings--sidebar button,
+aside a,
+aside button,
+div[class*="sidebar"] a,
+div[class*="sidebar"] span {
+    color: #ffffff !important;
+    fill: #ffffff !important;
+}
+
+/* Hover State (Pill) */
+#sidebar-v2 .nav-link:hover,
+#sidebar-v2 .nav-item:hover,
+.hl_settings--sidebar a:hover {
+    background-color: var(--arm-sidebar-hover) !important;
+    border-radius: 6px !important;
+}
+
+/* Active State (Purple) */
+#sidebar-v2 .nav-link.active,
+#sidebar-v2 .nav-item.active,
+.hl_settings--sidebar a.active {
+    background-color: var(--arm-primary) !important;
+    border-radius: 6px !important;
 }
 
 /* --- 5. Buttons --- */
-#app .btn-primary,
-#app .edit-dashboard-btn {
-    background-color: var(--arm-color-1) !important;
-    border-color: var(--arm-color-1) !important;
+.btn-primary,
+.hl_button--primary {
+    background-color: var(--arm-primary) !important;
+    border-color: var(--arm-primary) !important;
+    color: white !important;
+    box-shadow: 0 2px 4px rgba(111, 68, 204, 0.25) !important;
 }
 
-/* --- 8. White Label - Hide Native GHL Elements (AGRESSIVE) --- */
-
-/* 1. Hide Help Icon (?) */
-#app #hl_header--help-icon,
-#app [id*="help-icon"],
-body .hl_header--help-icon {
-    display: none !important;
-}
-
-/* 2. Hide Changelog / Recent Activities (Megaphone/Gift) */
-#app #canny_logs-toggle,
-#app .hl_header--recent-activities,
-#app [id*="canny"],
-#app [class*="recent-activities"] {
-    display: none !important;
-}
-
-/* 3. Hide AI Assistant (Sparkles icon) */
-#app .hl_header--ai-assistant,
-#app [class*="ai-assistant"],
-#app [id*="ai-assistant"] {
-    display: none !important;
-}
-
-/* 4. Hide Support/Feedback buttons in header controls */
-#app .hl_header--controls a[href*="support"],
-#app .hl_header--controls a[href*="help"],
-#app .hl_header--controls button[title*="Support"],
-#app .hl_header--controls button[title*="Help"] {
-    display: none !important;
-}
-
-/* 5. Hide GHL specific logos if they appear in top bar */
+/* --- 6. Hide GHL Logos --- */
 #app .hl_header--logo,
 #app #ghl-logo {
     display: none !important;

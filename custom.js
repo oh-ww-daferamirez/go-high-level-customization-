@@ -1,84 +1,64 @@
 /**
  * GoHighLevel Customization - ARM Project
- * Version: 3.0 (Reliability Build - Unified Single File)
+ * Version: 7.0 (CACHE BUSTER EDITION)
  * 
- * INTERNALIZES ALL CSS TO ENSURE BRANDING LOADS EVEN IF EXTERNAL FILES FAIL.
+ * IF YOU SEE THIS, THE UPDATE WORKED.
  */
 
 (function () {
     'use strict';
 
     const CONFIG = {
-        favicon: "https://placehold.co/32x32?text=ARM",
-        brandCSS: `
-            /* Clean Reset & Variables */
-            @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-            
-            :root {
-                --arm-color-1: #4551d8;
-                --arm-color-4: #181a8d;
-                --arm-color-5: #000675;
-                --arm-font-family: 'Poppins', sans-serif;
-            }
-
-            /* Force Branding */
-            html body, html body .hl_wrapper * { font-family: var(--arm-font-family) !important; }
-            
-            #sidebar-v2, .sidebar-v2-location #sidebar-v2 { 
-                background-color: var(--arm-color-5) !important; 
-            }
-
-            #app .hl_header, body .hl_header {
-                background-color: #ffffff !important;
-                border-bottom: 3px solid var(--arm-color-1) !important;
-            }
-
-            #app .btn-primary, #app .edit-dashboard-btn {
-                background-color: var(--arm-color-1) !important;
-                border-color: var(--arm-color-1) !important;
-            }
-
-            /* White Label Hiding */
-            #app #hl_header--help-icon, 
-            .hl_header--ai-assistant, 
-            #canny_logs-toggle,
-            .hl_header--recent-activities,
-            [id*="help-icon"], 
-            [class*="ai-assistant"] { 
-                display: none !important; 
-            }
+        targetColor: '#424A71', // Indigo Gray
+        hidingCSS: `
+            #app #hl_header--help-icon, #app [class*="help-icon"], #app [class*="ai-assistant"], #app #canny_logs-toggle { display: none !important; }
         `
     };
 
-    function injectStyles() {
-        if (document.getElementById('arm-custom-styles')) return;
-        const style = document.createElement('style');
-        style.id = 'arm-custom-styles';
-        style.textContent = CONFIG.brandCSS;
-        document.head.appendChild(style);
+    // --- ENFORCER LOGIC ---
+    function applyImportantStyle(element, property, value) {
+        if (!element) return;
+        element.style.setProperty(property, value, 'important');
     }
 
-    function updateFavicon() {
-        let link = document.querySelector("link[rel~='icon']");
-        if (!link) {
-            link = document.createElement('link');
-            link.rel = 'icon';
-            document.head.appendChild(link);
-        }
-        link.href = CONFIG.favicon;
+    function forceSidebarColor() {
+        // Broad selector list
+        const selectors = [
+            '#sidebar-v2',
+            '.sidebar-v2',
+            '.sidebar-v2-location #sidebar-v2',
+            'aside',
+            '.hl_nav_sidebar',
+            '.hl_settings--sidebar',
+            '.settings-sidebar',
+            '.n-layout-sider',
+            'div[class*="sidebar"]',
+            '#app .flex.flex-col.w-64.border-r'
+        ];
+
+        selectors.forEach(sel => {
+            const elements = document.querySelectorAll(sel);
+            elements.forEach(el => {
+                applyImportantStyle(el, 'background-color', CONFIG.targetColor);
+                applyImportantStyle(el, 'background', CONFIG.targetColor);
+                applyImportantStyle(el, 'background-image', 'none');
+                applyImportantStyle(el, 'border-right', '1px solid #363d5e');
+            });
+        });
     }
 
     function init() {
-        console.log("ARM Custom Skin v3.0: Initializing (Unified)...");
-        injectStyles();
-        updateFavicon();
+        // LOUD LOGGING FOR DEBUGGING
+        console.clear();
+        console.log("%c ARM Custom Skin v7.0 LOADED SUCCESSFULLY ", "background: #424A71; color: #fff; font-size: 20px; padding: 10px;");
+        console.log("Checking for Settings Sidebar...");
 
-        // Ensure styles stay injected if GHL wipes the head (can happen on route changes)
-        const observer = new MutationObserver(() => {
-            injectStyles();
-            updateFavicon();
-        });
-        observer.observe(document.head, { childList: true });
+        forceSidebarColor();
+
+        // Poll regularly
+        setInterval(() => {
+            forceSidebarColor();
+        }, 500);
     }
 
     if (document.readyState === 'loading') {
