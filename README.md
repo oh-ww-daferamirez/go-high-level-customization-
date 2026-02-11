@@ -1,16 +1,16 @@
-# ARM - GoHighLevel Custom Skin (v27.0 / v16.0)
+# ARM - GoHighLevel Custom Skin (v28.0 / v16.0)
 
 Este repositorio contiene la personalización visual (Skin) para GoHighLevel.
-**Versión 27.0 (Visual Polish)**: Corrección de contraste en iconos de la barra lateral y estandarización de dimensiones de botones.
+**Versión 28.0 (Visual Balance)**: Corrección definitiva de contrastes (Texto Blanco en Fondos Índigo) y geometría de botones perfecta.
 
 ## 🚀 Instalación en GoHighLevel
 
 Para aplicar este diseño a tu agencia o sub-cuenta, ve a:
 **Settings** > **Company** (o Location) > **Custom Code**.
 
-### 1. Head Tracking Code (CSS v27.0)
+### 1. Head Tracking Code (CSS v28.0)
 ```html
-<link rel="stylesheet" href="https://go-high-level-customization.vercel.app/custom.css?v=27.0">
+<link rel="stylesheet" href="https://go-high-level-customization.vercel.app/custom.css?v=28.0">
 ```
 
 ### 2. Body Tracking Code (JS v16.0)

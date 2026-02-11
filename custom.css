@@ -1,6 +1,6 @@
 /* =========================================
    ARM - GoHighLevel Custom Skin
-   Version: 27.0 (Visual Polish)
+   Version: 28.0 (Visual Balance & Contrast Safety)
    ========================================= */
 
 /* --- 0. Design Tokens (PASTEL LIGHT) --- */
@@ -62,7 +62,21 @@ aside {
     border-color: var(--arm-mist-accent) !important;
 }
 
-/* --- 3. SIDEBAR RECOVERY (Nuclear Contrast Fix) --- */
+/* --- 3. HIGH CONTRAST ENFORCER (Safety Net) --- */
+/* If it's Indigo Background, Text MUST be White. */
+[class*="bg-blue-"] *,
+[class*="bg-primary"] *,
+.bg-primary *,
+.btn-primary *,
+.hl_button--primary *,
+.n-button--primary-type *,
+.badge-primary *,
+.label-primary * {
+    color: #FFFFFF !important;
+    fill: #FFFFFF !important;
+}
+
+/* --- 4. SIDEBAR RECOVERY (Nuclear Contrast Fix) --- */
 /* 
    PROBLEM: Blue Killer bleeds into icon containers.
    FIX: Force ALL descendants of inactive links to be TRANSPARENT background and DARK text.
@@ -80,7 +94,7 @@ aside a:not(.active) * {
     fill: var(--arm-mist-text) !important;
 }
 
-/* Active State (White Card Preservation) */
+/* Active State (White Card Preservation) - EXEMPT from High Contrast Enforcer */
 .nav-link.active,
 aside a.active {
     background-color: var(--arm-mist-active) !important;
@@ -90,14 +104,16 @@ aside a.active {
     border-radius: 8px !important;
 }
 
-.nav-link.active svg,
-aside a.active svg {
-    fill: var(--arm-mist-accent) !important;
+.nav-link.active *,
+aside a.active * {
     color: var(--arm-mist-accent) !important;
+    /* Re-apply Indigo Text */
+    fill: var(--arm-mist-accent) !important;
     background-color: transparent !important;
 }
 
-/* --- 4. BUTTON GEOMETRY (Standardization) --- */
+
+/* --- 5. BUTTON GEOMETRY (Standardization) --- */
 /* Fix "Squeezed" buttons and inconsistent padding */
 .btn,
 .hl_button,
@@ -128,7 +144,7 @@ button,
     padding-right: 18px !important;
 }
 
-/* --- 5. Button Colors (Ethereal Mist) --- */
+/* --- 6. Button Colors (Ethereal Mist) --- */
 /* Primary */
 .btn-primary,
 .hl_button--primary,
@@ -166,7 +182,7 @@ a[class*="btn-primary"] {
     background-color: var(--arm-mist-start) !important;
 }
 
-/* --- 6. Navigation & Tabs --- */
+/* --- 7. Navigation & Tabs --- */
 .nav-tabs .nav-link.active,
 .n-tabs-tab--active,
 .q-tab--active,
@@ -177,7 +193,14 @@ ul[role="tablist"] li a.active,
     background-color: transparent !important;
 }
 
-/* --- 7. Forms & Pagination --- */
+/* Ensure tab text is Indigo (override High Contrast Enforcer if tab is active but transparent BG) */
+.nav-tabs .nav-link.active *,
+.n-tabs-tab--active * {
+    color: var(--arm-mist-accent) !important;
+}
+
+
+/* --- 8. Forms & Pagination --- */
 .page-item.active .page-link,
 .n-pagination-item--active {
     background-color: var(--arm-mist-accent) !important;
@@ -203,7 +226,7 @@ input[type="radio"]:checked {
     border-color: var(--arm-mist-accent) !important;
 }
 
-/* --- 8. Reset & Dropdowns --- */
+/* --- 9. Reset & Dropdowns --- */
 .card,
 .panel,
 input,
@@ -219,7 +242,7 @@ textarea,
     background-color: #F3F4F6 !important;
 }
 
-/* --- 9. Hide Logos --- */
+/* --- 10. Hide Logos --- */
 #app .hl_header--logo,
 #app #ghl-logo {
     display: none !important;
