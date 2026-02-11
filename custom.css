@@ -1,22 +1,23 @@
 /* =========================================
    ARM - GoHighLevel Custom Skin
-   Version: 17.0 (Contrast Inversion Edition)
+   Version: 20.0 (Clean Slate / Wireframe)
    ========================================= */
 
-/* --- 0. Design Tokens --- */
+/* --- 0. Design Tokens (STRICT GRAYSCALE) --- */
 :root {
-    --arm-primary: #818CF8 !important;
-    --arm-surface-sidebar: #424A71 !important;
-    --arm-text-high: #111827 !important;
-    --arm-text-medium: #374151 !important;
+    /* NO COLORS. ONLY STRUCTURE. */
+    --arm-bg-sidebar: #1F2937 !important;
+    /* Neutral Gray 900 */
+    --arm-bg-body: #F3F4F6 !important;
+    /* Neutral Gray 100 */
+    --arm-bg-card: #FFFFFF !important;
 
-    /* NEW: Explicit Sidebar Tokens */
-    --arm-sidebar-text-inactive: #FFFFFF !important;
-    /* Always White */
-    --arm-sidebar-text-active: #111827 !important;
-    /* Dark on Active */
-    --arm-sidebar-bg-active: #FFFFFF !important;
-    /* White Background on Active */
+    --arm-text-main: #111827 !important;
+    /* Black */
+    --arm-text-inv: #FFFFFF !important;
+    /* White */
+    --arm-border: #E5E7EB !important;
+    /* Gray 200 */
 
     --arm-font-family: 'Poppins', sans-serif !important;
 }
@@ -29,99 +30,71 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* --- 1. Sidebar Background --- */
+/* --- 1. Sidebar Structure --- */
+/* Target only the main containers. No wildcards. */
 #sidebar-v2,
 .sidebar-v2-location #sidebar-v2,
 .hl_settings--sidebar,
-aside,
-nav[class*="sidebar"] {
-    background-color: var(--arm-surface-sidebar) !important;
-    border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+aside {
+    background-color: var(--arm-bg-sidebar) !important;
+    background-image: none !important;
+    /* Kill any gradients */
+    border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
 }
 
-/* --- 2. SIDEBAR ITEMS (The Logic Fix) --- */
-
-/* DEFAULT STATE (Inactive) -> WHITE TEXT */
+/* Sidebar Links (White) */
 #sidebar-v2 .nav-link,
-#sidebar-v2 .nav-item,
-.hl_settings--sidebar a,
 aside a,
 .n-menu-item-content {
-    color: var(--arm-sidebar-text-inactive) !important;
-    /* FORCE WHITE */
+    color: var(--arm-text-inv) !important;
 }
 
-/* Icons in Default State */
-#sidebar-v2 .nav-link svg,
-#sidebar-v2 .nav-link i,
-aside a svg,
-aside a i {
-    fill: var(--arm-sidebar-text-inactive) !important;
-    color: var(--arm-sidebar-text-inactive) !important;
+/* Sidebar Icons (White) */
+#sidebar-v2 svg,
+aside svg,
+[class*="icon"] {
+    fill: var(--arm-text-inv) !important;
+    color: var(--arm-text-inv) !important;
 }
 
-/* Text spans in Default State */
-#sidebar-v2 .nav-link span,
-aside a span {
-    color: var(--arm-sidebar-text-inactive) !important;
+/* Active State (Simple Gray Highlight) */
+.nav-link.active,
+aside a.active {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: var(--arm-text-inv) !important;
 }
 
-
-/* ACTIVE / HOVER STATE -> DARK TEXT on WHITE BG */
-#sidebar-v2 .nav-link.active,
-#sidebar-v2 .nav-link:hover,
-.hl_settings--sidebar a.active,
-.hl_settings--sidebar a:hover,
-aside a.active,
-aside a:hover {
-    background-color: var(--arm-sidebar-bg-active) !important;
-    /* White BG */
-    color: var(--arm-sidebar-text-active) !important;
-    /* Dark Text */
-    border-radius: 6px !important;
-}
-
-/* Icons in Active/Hover State */
-#sidebar-v2 .nav-link.active svg,
-#sidebar-v2 .nav-link:hover svg,
-.hl_settings--sidebar a.active svg,
-.hl_settings--sidebar a:hover svg {
-    fill: var(--arm-sidebar-text-active) !important;
-    /* Dark Icon */
-    color: var(--arm-sidebar-text-active) !important;
-}
-
-/* Text spans in Active/Hover State */
-#sidebar-v2 .nav-link.active span,
-#sidebar-v2 .nav-link:hover span {
-    color: var(--arm-sidebar-text-active) !important;
-    /* Dark Text */
-}
-
-/* --- 3. Dropdowns (Protection) --- */
-.dropdown-menu,
-.multiselect__content-wrapper,
-.q-menu,
+/* --- 2. Content Area (Reset) --- */
+/* Ensure cards and inputs are standard white */
 .card,
+.panel,
+.container-fluid,
 .modal-content {
-    background-color: #FFFFFF !important;
-    color: #374151 !important;
+    background-color: var(--arm-bg-card) !important;
 }
 
-.dropdown-menu * {
-    color: #374151 !important;
-}
-
-/* --- 4. Inputs --- */
+/* --- 3. Inputs & Dropdowns (SAFETY) --- */
+/* Explicitly force standard styling to prevent bleeding */
 input,
 select,
-textarea {
+textarea,
+.dropdown-menu,
+.q-menu,
+.n-dropdown-menu {
     background-color: #FFFFFF !important;
     color: #111827 !important;
+    /* Pitch Black Text */
     border: 1px solid #D1D5DB !important;
 }
 
-/* --- 5. Hide GHL Logos --- */
+/* List Items inside Dropdowns */
+.dropdown-item,
+.dropdown-menu li,
+.q-item {
+    color: #111827 !important;
+}
+
+/* --- 4. Hide Logos --- */
 #app .hl_header--logo,
 #app #ghl-logo {
     display: none !important;
