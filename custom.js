@@ -1,15 +1,14 @@
 /**
  * GoHighLevel Customization - ARM Project
- * Version: 7.0 (CACHE BUSTER EDITION)
- * 
- * IF YOU SEE THIS, THE UPDATE WORKED.
+ * Version: 8.0 (High Contrast Support)
  */
 
 (function () {
     'use strict';
 
     const CONFIG = {
-        targetColor: '#424A71', // Indigo Gray
+        targetColor: '#424A71', // Indigo Gray BG
+        activeColor: '#818CF8', // Light Purple Accents
         hidingCSS: `
             #app #hl_header--help-icon, #app [class*="help-icon"], #app [class*="ai-assistant"], #app #canny_logs-toggle { display: none !important; }
         `
@@ -22,7 +21,6 @@
     }
 
     function forceSidebarColor() {
-        // Broad selector list
         const selectors = [
             '#sidebar-v2',
             '.sidebar-v2',
@@ -43,22 +41,25 @@
                 applyImportantStyle(el, 'background', CONFIG.targetColor);
                 applyImportantStyle(el, 'background-image', 'none');
                 applyImportantStyle(el, 'border-right', '1px solid #363d5e');
+
+                // Force children text logic would be too heavy here, relying on CSS v11.0
             });
         });
     }
 
     function init() {
-        // LOUD LOGGING FOR DEBUGGING
         console.clear();
-        console.log("%c ARM Custom Skin v7.0 LOADED SUCCESSFULLY ", "background: #424A71; color: #fff; font-size: 20px; padding: 10px;");
-        console.log("Checking for Settings Sidebar...");
+        console.log("%c ARM Custom Skin v8.0 (High Contrast) LOADED ", "background: #818CF8; color: #fff; font-size: 16px; padding: 8px;");
+
+        // Inject hiding CSS
+        const style = document.createElement('style');
+        style.textContent = CONFIG.hidingCSS;
+        document.head.appendChild(style);
 
         forceSidebarColor();
 
-        // Poll regularly
-        setInterval(() => {
-            forceSidebarColor();
-        }, 500);
+        // Poll
+        setInterval(forceSidebarColor, 500);
     }
 
     if (document.readyState === 'loading') {

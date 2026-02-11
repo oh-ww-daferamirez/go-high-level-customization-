@@ -1,18 +1,26 @@
 /* =========================================
    ARM - GoHighLevel Custom Skin
-   Version: 10.0 (Cache Buster Edition)
+   Version: 11.0 (High Contrast Edition)
    ========================================= */
 
 /* --- 1. Typography & Imports --- */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
-    /* USER PALETTE - FORCE */
-    --arm-primary: #6F44CC !important;
-    --arm-primary-hover: #5a37a6 !important;
+    /* USER PALETTE - REFINED FROM IMAGE REFERENCE */
+
+    /* Primary (Buttons/Active State) - Light Lavender/Purple from reference image */
+    /* OLD: #6F44CC (Too Dark) */
+    /* NEW: #818CF8 (High Contrast against Dark BG) */
+    --arm-primary: #818CF8 !important;
+    --arm-primary-hover: #6366f1 !important;
+
+    /* Sidebar Background - Midnight Indigo */
     --arm-sidebar-bg: #424A71 !important;
-    /* THE TARGET */
-    --arm-sidebar-hover: #586088 !important;
+
+    /* Sidebar Hover - Slightly lighter than BG */
+    --arm-sidebar-hover: #4F5985 !important;
+
     --arm-body-bg: #FAFAFD !important;
     --arm-text-main: #2D334A !important;
     --arm-border: #D8DAE9 !important;
@@ -44,30 +52,21 @@ div[id*="sidebar"],
 nav[class*="sidebar"],
 .n-layout-sider,
 .hl_settings--sidebar,
-/* Settings Specific */
 .settings-sidebar,
 .hl_nav_sidebar,
-aside {
+aside,
+#app .w-64.flex-col.border-r {
     background-color: var(--arm-sidebar-bg) !important;
     background-image: none !important;
     background: var(--arm-sidebar-bg) !important;
     border-right: 1px solid #363d5e !important;
 }
 
-/* Helper for Tailwind generic sidebars often used in Settings */
-#app .w-64.flex-col.border-r {
-    background-color: var(--arm-sidebar-bg) !important;
-}
-
-/* Force Items/Text/Icons */
-#sidebar-v2 .nav-link,
-#sidebar-v2 .nav-item,
-.hl_settings--sidebar a,
-.hl_settings--sidebar button,
-aside a,
-aside button,
-div[class*="sidebar"] a,
-div[class*="sidebar"] span {
+/* Force Items/Text/Icons using Generic Recursion */
+/* This ensures White text on Dark BG */
+[id*="sidebar"] *,
+aside *,
+.hl_settings--sidebar * {
     color: #ffffff !important;
     fill: #ffffff !important;
 }
@@ -75,16 +74,23 @@ div[class*="sidebar"] span {
 /* Hover State (Pill) */
 #sidebar-v2 .nav-link:hover,
 #sidebar-v2 .nav-item:hover,
-.hl_settings--sidebar a:hover {
+.hl_settings--sidebar a:hover,
+aside a:hover {
     background-color: var(--arm-sidebar-hover) !important;
     border-radius: 6px !important;
 }
 
-/* Active State (Purple) */
+/* Active State (High Contrast Pill) */
 #sidebar-v2 .nav-link.active,
 #sidebar-v2 .nav-item.active,
-.hl_settings--sidebar a.active {
+.hl_settings--sidebar a.active,
+aside a.active,
+/* Catch-all for active classes */
+.active,
+.router-link-active {
     background-color: var(--arm-primary) !important;
+    /* Light Purple */
+    color: #ffffff !important;
     border-radius: 6px !important;
 }
 
@@ -94,7 +100,9 @@ div[class*="sidebar"] span {
     background-color: var(--arm-primary) !important;
     border-color: var(--arm-primary) !important;
     color: white !important;
-    box-shadow: 0 2px 4px rgba(111, 68, 204, 0.25) !important;
+    font-weight: 500 !important;
+    box-shadow: 0 4px 6px rgba(129, 140, 248, 0.25) !important;
+    /* Soft Purple Shadow */
 }
 
 /* --- 6. Hide GHL Logos --- */
