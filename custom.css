@@ -1,6 +1,6 @@
 /* =========================================
    ARM - GoHighLevel Custom Skin
-   Version: 25.0 (The Blue Killer)
+   Version: 26.0 (Surgical Sidebar Fix)
    ========================================= */
 
 /* --- 0. Design Tokens (PASTEL LIGHT) --- */
@@ -32,7 +32,7 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* --- 1. Sidebar --- */
+/* --- 1. Sidebar (Base) --- */
 #sidebar-v2,
 .sidebar-v2-location #sidebar-v2,
 .hl_settings--sidebar,
@@ -41,18 +41,55 @@ aside {
     border-right: 1px solid rgba(255, 255, 255, 0.5) !important;
 }
 
+/* --- 2. THE BLUE KILLER (Utility Overrides) --- */
+/* Target Tailwind/Bootstrap Utilities globally */
+[class*="bg-blue-"],
+[class*="bg-primary"],
+.bg-primary {
+    background-color: var(--arm-mist-accent) !important;
+}
+
+[class*="text-blue-"],
+[class*="text-primary"],
+.text-primary,
+.link-primary {
+    color: var(--arm-mist-accent) !important;
+}
+
+[class*="border-blue-"],
+[class*="border-primary"],
+.border-primary {
+    border-color: var(--arm-mist-accent) !important;
+}
+
+/* --- 3. SIDEBAR RECOVERY (Override the Overrides) --- */
+/* Ensure Sidebar Icons DO NOT get the Blue Killer background */
+#sidebar-v2 .nav-link:not(.active),
+#sidebar-v2 .nav-link:not(.active) *,
+aside a:not(.active),
+aside a:not(.active) * {
+    background-color: transparent !important;
+    /* FORCE TRANSPARENCY */
+    box-shadow: none !important;
+}
+
 #sidebar-v2 .nav-link,
 .hl_settings--sidebar a,
 aside a,
-.n-menu-item-content,
-#sidebar-v2 svg,
-aside svg,
-[class*="icon"] {
+.n-menu-item-content {
     color: var(--arm-mist-text) !important;
-    fill: var(--arm-mist-text) !important;
     font-weight: 500 !important;
 }
 
+/* Sidebar Icons (Specific Color Force) */
+#sidebar-v2 svg,
+aside svg,
+[class*="icon"] {
+    fill: var(--arm-mist-text) !important;
+    color: var(--arm-mist-text) !important;
+}
+
+/* Active State (White Card) */
 .nav-link.active,
 aside a.active {
     background-color: var(--arm-mist-active) !important;
@@ -66,41 +103,17 @@ aside a.active {
 aside a.active svg {
     fill: var(--arm-mist-accent) !important;
     color: var(--arm-mist-accent) !important;
+    background-color: transparent !important;
+    /* Ensure icon itself has no bg */
 }
 
-/* --- 2. THE BLUE KILLER (Utility Overrides) --- */
-/* Target Tailwind/Bootstrap Utilities that define Blue/Primary */
-
-/* Backgrounds */
-[class*="bg-blue-"],
-[class*="bg-primary"],
-.bg-primary {
-    background-color: var(--arm-mist-accent) !important;
-}
-
-/* Text */
-[class*="text-blue-"],
-[class*="text-primary"],
-.text-primary,
-.link-primary {
-    color: var(--arm-mist-accent) !important;
-}
-
-/* Borders */
-[class*="border-blue-"],
-[class*="border-primary"],
-.border-primary {
-    border-color: var(--arm-mist-accent) !important;
-}
-
-/* --- 3. Buttons (Specific \u0026 Wildcard) --- */
+/* --- 4. Buttons --- */
 .btn-primary,
 .hl_button--primary,
 .n-button--primary-type,
 .q-btn.bg-primary,
 button[class*="blue"],
-a[class*="btn-primary"],
-.btn[class*="blue"] {
+a[class*="btn-primary"] {
     background-color: var(--arm-mist-accent) !important;
     border-color: var(--arm-mist-accent) !important;
     color: #FFFFFF !important;
@@ -117,7 +130,6 @@ a[class*="btn-primary"],
 .hl_button--default,
 .n-button--default-type,
 .q-btn--outline,
-.btn-outline-primary,
 [class*="btn-outline-blue"] {
     background-color: #FFFFFF !important;
     border: 1px solid var(--arm-mist-accent) !important;
@@ -130,21 +142,18 @@ a[class*="btn-primary"],
     background-color: var(--arm-mist-start) !important;
 }
 
-/* --- 4. Navigation & Tabs (Smart Lists) --- */
+/* --- 5. Tabs & Smart Lists --- */
 .nav-tabs .nav-link.active,
 .n-tabs-tab--active,
 .q-tab--active,
-/* Smart List Specifics */
 ul[role="tablist"] li a.active,
-ul[role="tablist"] li.active a,
 [id*="smart-list"] .active {
     color: var(--arm-mist-accent) !important;
-    border-bottom-color: var(--arm-mist-accent) !important;
-    border-bottom-width: 2px !important;
+    border-bottom: 2px solid var(--arm-mist-accent) !important;
     background-color: transparent !important;
 }
 
-/* --- 5. Pagination & Forms --- */
+/* --- 6. Forms & Pagination --- */
 .page-item.active .page-link,
 .n-pagination-item--active {
     background-color: var(--arm-mist-accent) !important;
@@ -158,8 +167,7 @@ ul[role="tablist"] li.active a,
 
 input:focus,
 select:focus,
-textarea:focus,
-.form-control:focus {
+textarea:focus {
     border-color: var(--arm-mist-accent) !important;
     box-shadow: 0 0 0 3px var(--arm-mist-focus-ring) !important;
 }
@@ -171,31 +179,16 @@ input[type="radio"]:checked {
     border-color: var(--arm-mist-accent) !important;
 }
 
-/* --- 6. Content Reset --- */
+/* --- 7. Reset & Dropdowns --- */
 .card,
 .panel,
-.container-fluid,
-.modal-content,
 input,
 select,
-textarea {
+textarea,
+.dropdown-menu {
     background-color: #FFFFFF !important;
     color: #111827 !important;
     border-color: #E5E7EB !important;
-}
-
-/* --- 7. Dropdowns --- */
-.dropdown-menu,
-.q-menu,
-.n-dropdown-menu {
-    background-color: #FFFFFF !important;
-    color: #374151 !important;
-    border: 1px solid #E5E7EB !important;
-}
-
-.dropdown-item,
-.dropdown-menu li {
-    color: #374151 !important;
 }
 
 .dropdown-item:hover {
