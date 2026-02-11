@@ -1,14 +1,18 @@
 /**
  * GoHighLevel Customization - ARM Project
- * Version: 8.0 (High Contrast Support)
+ * Version: 9.0 (System Design Support)
+ * 
+ * Logic:
+ * 1. Enforce Sidebar Color using the CSS Token var(--arm-surface-sidebar).
+ * 2. Sanitize UI (Hide branding).
  */
 
 (function () {
     'use strict';
 
     const CONFIG = {
-        targetColor: '#424A71', // Indigo Gray BG
-        activeColor: '#818CF8', // Light Purple Accents
+        // Use CSS Variable to ensure JS matches Custom CSS Single Source of Truth
+        targetColor: 'var(--arm-surface-sidebar)',
         hidingCSS: `
             #app #hl_header--help-icon, #app [class*="help-icon"], #app [class*="ai-assistant"], #app #canny_logs-toggle { display: none !important; }
         `
@@ -30,35 +34,35 @@
             '.hl_settings--sidebar',
             '.settings-sidebar',
             '.n-layout-sider',
-            'div[class*="sidebar"]',
-            '#app .flex.flex-col.w-64.border-r'
+            'div[class*="sidebar"]', // Generic
+            '#app .flex.flex-col.w-64.border-r' // Tailwind layout
         ];
 
         selectors.forEach(sel => {
             const elements = document.querySelectorAll(sel);
             elements.forEach(el => {
+                // Apply the CSS Variable directly!
                 applyImportantStyle(el, 'background-color', CONFIG.targetColor);
                 applyImportantStyle(el, 'background', CONFIG.targetColor);
-                applyImportantStyle(el, 'background-image', 'none');
-                applyImportantStyle(el, 'border-right', '1px solid #363d5e');
+                applyImportantStyle(el, 'border-right', '1px solid rgba(255,255,255,0.1)'); // Matches CSS
 
-                // Force children text logic would be too heavy here, relying on CSS v11.0
+                // Ensure no image overrides
+                applyImportantStyle(el, 'background-image', 'none');
             });
         });
     }
 
     function init() {
         console.clear();
-        console.log("%c ARM Custom Skin v8.0 (High Contrast) LOADED ", "background: #818CF8; color: #fff; font-size: 16px; padding: 8px;");
+        console.log("%c ARM UI Kit v9.0 (System Design) LOADED ", "background: #818CF8; color: #fff; font-size: 14px; padding: 6px;");
 
         // Inject hiding CSS
         const style = document.createElement('style');
         style.textContent = CONFIG.hidingCSS;
         document.head.appendChild(style);
 
+        // Run Enforcer
         forceSidebarColor();
-
-        // Poll
         setInterval(forceSidebarColor, 500);
     }
 
