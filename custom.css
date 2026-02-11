@@ -1,6 +1,6 @@
 /* =========================================
    ARM - GoHighLevel Custom Skin
-   Version: 26.0 (Surgical Sidebar Fix)
+   Version: 27.0 (Visual Polish)
    ========================================= */
 
 /* --- 0. Design Tokens (PASTEL LIGHT) --- */
@@ -62,34 +62,25 @@ aside {
     border-color: var(--arm-mist-accent) !important;
 }
 
-/* --- 3. SIDEBAR RECOVERY (Override the Overrides) --- */
-/* Ensure Sidebar Icons DO NOT get the Blue Killer background */
+/* --- 3. SIDEBAR RECOVERY (Nuclear Contrast Fix) --- */
+/* 
+   PROBLEM: Blue Killer bleeds into icon containers.
+   FIX: Force ALL descendants of inactive links to be TRANSPARENT background and DARK text.
+*/
 #sidebar-v2 .nav-link:not(.active),
 #sidebar-v2 .nav-link:not(.active) *,
 aside a:not(.active),
 aside a:not(.active) * {
     background-color: transparent !important;
-    /* FORCE TRANSPARENCY */
+    background-image: none !important;
     box-shadow: none !important;
-}
-
-#sidebar-v2 .nav-link,
-.hl_settings--sidebar a,
-aside a,
-.n-menu-item-content {
+    border: none !important;
     color: var(--arm-mist-text) !important;
-    font-weight: 500 !important;
-}
-
-/* Sidebar Icons (Specific Color Force) */
-#sidebar-v2 svg,
-aside svg,
-[class*="icon"] {
+    /* Charcoal */
     fill: var(--arm-mist-text) !important;
-    color: var(--arm-mist-text) !important;
 }
 
-/* Active State (White Card) */
+/* Active State (White Card Preservation) */
 .nav-link.active,
 aside a.active {
     background-color: var(--arm-mist-active) !important;
@@ -104,10 +95,41 @@ aside a.active svg {
     fill: var(--arm-mist-accent) !important;
     color: var(--arm-mist-accent) !important;
     background-color: transparent !important;
-    /* Ensure icon itself has no bg */
 }
 
-/* --- 4. Buttons --- */
+/* --- 4. BUTTON GEOMETRY (Standardization) --- */
+/* Fix "Squeezed" buttons and inconsistent padding */
+.btn,
+.hl_button,
+button,
+.q-btn,
+.n-button {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    /* Geometry */
+    min-height: 38px !important;
+    padding: 6px 16px !important;
+    line-height: 1.5 !important;
+    /* Font */
+    font-family: var(--arm-font-family);
+    font-weight: 500 !important;
+    letter-spacing: 0.3px !important;
+    border-radius: 8px !important;
+    /* Spacing */
+    gap: 8px !important;
+}
+
+/* Specific Pill Buttons (Quick Filters) */
+[class*="rounded-full"],
+.rounded-full {
+    border-radius: 9999px !important;
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+}
+
+/* --- 5. Button Colors (Ethereal Mist) --- */
+/* Primary */
 .btn-primary,
 .hl_button--primary,
 .n-button--primary-type,
@@ -117,14 +139,16 @@ a[class*="btn-primary"] {
     background-color: var(--arm-mist-accent) !important;
     border-color: var(--arm-mist-accent) !important;
     color: #FFFFFF !important;
-    border-radius: 8px !important;
+    box-shadow: 0 2px 4px rgba(79, 70, 229, 0.2) !important;
 }
 
 .btn-primary:hover,
 .hl_button--primary:hover {
     background-color: var(--arm-mist-accent-hover) !important;
+    transform: translateY(-1px);
 }
 
+/* Secondary / Outline */
 .btn-white,
 .btn-light,
 .hl_button--default,
@@ -133,8 +157,8 @@ a[class*="btn-primary"] {
 [class*="btn-outline-blue"] {
     background-color: #FFFFFF !important;
     border: 1px solid var(--arm-mist-accent) !important;
+    /* Gentle Indigo Border */
     color: var(--arm-mist-accent) !important;
-    border-radius: 8px !important;
 }
 
 .btn-white:hover,
@@ -142,7 +166,7 @@ a[class*="btn-primary"] {
     background-color: var(--arm-mist-start) !important;
 }
 
-/* --- 5. Tabs & Smart Lists --- */
+/* --- 6. Navigation & Tabs --- */
 .nav-tabs .nav-link.active,
 .n-tabs-tab--active,
 .q-tab--active,
@@ -153,7 +177,7 @@ ul[role="tablist"] li a.active,
     background-color: transparent !important;
 }
 
-/* --- 6. Forms & Pagination --- */
+/* --- 7. Forms & Pagination --- */
 .page-item.active .page-link,
 .n-pagination-item--active {
     background-color: var(--arm-mist-accent) !important;
@@ -179,7 +203,7 @@ input[type="radio"]:checked {
     border-color: var(--arm-mist-accent) !important;
 }
 
-/* --- 7. Reset & Dropdowns --- */
+/* --- 8. Reset & Dropdowns --- */
 .card,
 .panel,
 input,
@@ -195,7 +219,7 @@ textarea,
     background-color: #F3F4F6 !important;
 }
 
-/* --- 8. Hide Logos --- */
+/* --- 9. Hide Logos --- */
 #app .hl_header--logo,
 #app #ghl-logo {
     display: none !important;
