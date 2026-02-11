@@ -1,6 +1,6 @@
 /* =========================================
    ARM - GoHighLevel Custom Skin
-   Version: 24.0 (Full Coverage Edition)
+   Version: 25.0 (The Blue Killer)
    ========================================= */
 
 /* --- 0. Design Tokens (PASTEL LIGHT) --- */
@@ -68,13 +68,39 @@ aside a.active svg {
     color: var(--arm-mist-accent) !important;
 }
 
-/* --- 2. Buttons --- */
+/* --- 2. THE BLUE KILLER (Utility Overrides) --- */
+/* Target Tailwind/Bootstrap Utilities that define Blue/Primary */
+
+/* Backgrounds */
+[class*="bg-blue-"],
+[class*="bg-primary"],
+.bg-primary {
+    background-color: var(--arm-mist-accent) !important;
+}
+
+/* Text */
+[class*="text-blue-"],
+[class*="text-primary"],
+.text-primary,
+.link-primary {
+    color: var(--arm-mist-accent) !important;
+}
+
+/* Borders */
+[class*="border-blue-"],
+[class*="border-primary"],
+.border-primary {
+    border-color: var(--arm-mist-accent) !important;
+}
+
+/* --- 3. Buttons (Specific \u0026 Wildcard) --- */
 .btn-primary,
 .hl_button--primary,
 .n-button--primary-type,
 .q-btn.bg-primary,
 button[class*="blue"],
-#appointment-calendar .hl_button--primary {
+a[class*="btn-primary"],
+.btn[class*="blue"] {
     background-color: var(--arm-mist-accent) !important;
     border-color: var(--arm-mist-accent) !important;
     color: #FFFFFF !important;
@@ -90,7 +116,9 @@ button[class*="blue"],
 .btn-light,
 .hl_button--default,
 .n-button--default-type,
-.q-btn--outline {
+.q-btn--outline,
+.btn-outline-primary,
+[class*="btn-outline-blue"] {
     background-color: #FFFFFF !important;
     border: 1px solid var(--arm-mist-accent) !important;
     color: var(--arm-mist-accent) !important;
@@ -102,53 +130,23 @@ button[class*="blue"],
     background-color: var(--arm-mist-start) !important;
 }
 
-/* --- 3. FORMS & INPUTS (Full Coverage) --- */
-input:focus,
-select:focus,
-textarea:focus,
-.form-control:focus,
-.n-input--focus,
-.q-field--focused .q-field__control {
-    border-color: var(--arm-mist-accent) !important;
-    box-shadow: 0 0 0 3px var(--arm-mist-focus-ring) !important;
-    outline: none !important;
-}
-
-/* Checkboxes & Radios */
-.form-check-input:checked,
-input[type="checkbox"]:checked,
-input[type="radio"]:checked,
-.n-checkbox--checked .n-checkbox__box,
-.q-checkbox__inner--truthy,
-.q-radio__inner--truthy {
-    background-color: var(--arm-mist-accent) !important;
-    border-color: var(--arm-mist-accent) !important;
-    color: #FFFFFF !important;
-}
-
-/* Toggles / Switches */
-.form-switch .form-check-input:checked,
-.n-switch--active .n-switch__rail,
-.q-toggle__track--active {
-    background-color: var(--arm-mist-accent) !important;
-    border-color: var(--arm-mist-accent) !important;
-}
-
-/* --- 4. NAVIGATION COMPONENTS --- */
-
-/* Tabs */
+/* --- 4. Navigation & Tabs (Smart Lists) --- */
 .nav-tabs .nav-link.active,
 .n-tabs-tab--active,
-.q-tab--active {
+.q-tab--active,
+/* Smart List Specifics */
+ul[role="tablist"] li a.active,
+ul[role="tablist"] li.active a,
+[id*="smart-list"] .active {
     color: var(--arm-mist-accent) !important;
-    border-bottom: 2px solid var(--arm-mist-accent) !important;
+    border-bottom-color: var(--arm-mist-accent) !important;
+    border-bottom-width: 2px !important;
     background-color: transparent !important;
 }
 
-/* Pagination */
+/* --- 5. Pagination & Forms --- */
 .page-item.active .page-link,
-.n-pagination-item--active,
-.q-pagination .q-btn--standard {
+.n-pagination-item--active {
     background-color: var(--arm-mist-accent) !important;
     border-color: var(--arm-mist-accent) !important;
     color: #FFFFFF !important;
@@ -158,34 +156,22 @@ input[type="radio"]:checked,
     color: var(--arm-mist-accent) !important;
 }
 
-/* Links (Generic) */
-a:not(.nav-link):not(.btn):not(.dropdown-item) {
-    color: var(--arm-mist-accent);
-    text-decoration: none;
+input:focus,
+select:focus,
+textarea:focus,
+.form-control:focus {
+    border-color: var(--arm-mist-accent) !important;
+    box-shadow: 0 0 0 3px var(--arm-mist-focus-ring) !important;
 }
 
-a:not(.nav-link):not(.btn):not(.dropdown-item):hover {
-    color: var(--arm-mist-accent-hover);
-    text-decoration: underline;
+.form-check-input:checked,
+input[type="checkbox"]:checked,
+input[type="radio"]:checked {
+    background-color: var(--arm-mist-accent) !important;
+    border-color: var(--arm-mist-accent) !important;
 }
 
-/* --- 5. UTILITIES --- */
-.spinner-border,
-.n-spin,
-.q-spinner {
-    color: var(--arm-mist-accent) !important;
-}
-
-.badge,
-.tag,
-.n-tag,
-.q-badge {
-    background-color: var(--arm-mist-start) !important;
-    /* Lavender BG */
-    color: var(--arm-mist-text) !important;
-}
-
-/* --- 6. Content Area Reset --- */
+/* --- 6. Content Reset --- */
 .card,
 .panel,
 .container-fluid,
@@ -205,7 +191,6 @@ textarea {
     background-color: #FFFFFF !important;
     color: #374151 !important;
     border: 1px solid #E5E7EB !important;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
 }
 
 .dropdown-item,
