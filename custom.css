@@ -1,20 +1,16 @@
 /* =========================================
    ARM - GoHighLevel Custom Skin
-   Version: 13.0 (Scoped Isolation Edition)
+   Version: 14.0 (The Rescue Edition)
    ========================================= */
 
 /* --- 0. Design Tokens --- */
 :root {
-    /* Palette */
     --arm-primary: #818CF8 !important;
-    /* Lavender */
     --arm-surface-sidebar: #424A71 !important;
-    /* Midnight */
     --arm-surface-card: #FFFFFF !important;
     --arm-text-high: #111827 !important;
-    /* Dark Gray (Headings) */
     --arm-text-medium: #374151 !important;
-    /* Dark Gray (Body) */
+    /* Dark Gray */
     --arm-text-inverse: #FFFFFF !important;
     /* White */
     --arm-border-subtle: #E5E7EB !important;
@@ -27,17 +23,14 @@
 html,
 body {
     font-family: var(--arm-font-family);
-    color: var(--arm-text-medium) !important;
-    /* Default to DARK text */
     -webkit-font-smoothing: antialiased;
 }
 
 /* --- 2. Sidebar: ISOLATED STYLING --- */
-/* We target the container, but be careful with children */
+/* Target CONTAINERS only */
 #sidebar-v2,
 .sidebar-v2-location #sidebar-v2,
 .hl_settings--sidebar,
-.n-layout-sider,
 aside,
 nav[class*="sidebar"] {
     background-color: var(--arm-surface-sidebar) !important;
@@ -45,69 +38,65 @@ nav[class*="sidebar"] {
 }
 
 /* 
-   CRITICAL FIX: Only force white text on direct sidebar children 
-   EXCLUDING dropdowns, modals, and popovers that might be nested 
+   THE DANGEROUS WILDCARD - RESTRICTED 
+   Only target things that are NOT dropdowns/modals/inputs
 */
-[id*="sidebar"] *:not(.dropdown-menu):not(.popover):not(.modal-content):not(input):not(select),
-aside *:not(.dropdown-menu):not(.popover):not(.modal-content):not(input):not(select),
-.hl_settings--sidebar *:not(.dropdown-menu):not(.popover):not(.modal-content):not(input):not(select) {
+[id*="sidebar"] *:not(.dropdown-menu):not(.dropdown-item):not(input):not(select):not(textarea):not(.btn),
+aside *:not(.dropdown-menu):not(.dropdown-item):not(input):not(select):not(textarea):not(.btn) {
     color: var(--arm-text-inverse) !important;
-    fill: var(--arm-text-inverse) !important;
     border-color: rgba(255, 255, 255, 0.1) !important;
 }
 
-/* --- 3. Correction for Dropdowns / Modals / Lists (The "Invisible Text" Fix) --- */
-.dropdown-menu,
-.dropdown-item,
-.list-group-item,
-.modal-content,
-.popover,
-.multiselect__content-wrapper,
-/* Specific GHL Account Switcher Classes */
-.account-switcher-dropdown,
-.hl_switcher,
-ul[class*="dropdown"] {
-    background-color: var(--arm-surface-card) !important;
-    color: var(--arm-text-medium) !important;
-    /* Force DARK text */
+/* --- 3. THE RESCUE RULES (Specificity War Winner) --- */
+/* Use #app body to artificially inflate specificity */
+#app .dropdown-menu,
+#app .dropdown-menu *,
+/* CRITICAL: Target descendants */
+#app .multiselect__content-wrapper,
+#app .multiselect__content-wrapper *,
+#app .hl_switcher,
+#app .hl_switcher *,
+#app .card *,
+#app .modal
+/*,
+#app .modal * 
+{
+    color: var(--arm-text-medium) !important; /* Forces Dark Gray */
+fill: var(--arm-text-medium) !important;
+text-shadow: none !important;
 }
 
-/* Force children of these dropdowns to be dark too */
-.dropdown-menu *,
-.modal-content *,
-.list-group-item * {
-    color: var(--arm-text-medium) !important;
-    fill: var(--arm-text-medium) !important;
-}
-
-/* Restore White color ONLY for Active/Primary items in dropdowns if needed */
-.dropdown-item.active,
-.dropdown-item:active {
-    background-color: var(--arm-primary) !important;
-    color: #ffffff !important;
-}
-
-/* --- 4. Inputs (Global Fix) --- */
-input,
-select,
-textarea,
-.form-control {
+/* Fix Inputs inside exclusions */
+#app input,
+#app select,
+#app textarea {
     background-color: #FFFFFF !important;
-    border: 1px solid #D1D5DB !important;
     color: #111827 !important;
-    /* Always dark text */
+    border: 1px solid #D1D5DB !important;
 }
 
-/* --- 5. Buttons --- */
-.btn-primary,
-.hl_button--primary {
+/* Fix Dropdown Backgrounds specifically */
+.dropdown-menu,
+.multiselect__content-wrapper {
+    background-color: #FFFFFF !important;
+    border: 1px solid #E5E7EB !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Re-apply White ONLY to Active Items */
+.dropdown-item.active,
+.dropdown-item:active,
+.dropdown-item:hover {
     background-color: var(--arm-primary) !important;
-    border: 1px solid var(--arm-primary) !important;
-    color: white !important;
-    box-shadow: 0 4px 6px rgba(129, 140, 248, 0.25) !important;
+    color: #FFFFFF !important;
 }
 
-/* --- 6. Hide GHL Logos --- */
+.dropdown-item.active *,
+.dropdown-item:hover * {
+    color: #FFFFFF !important;
+}
+
+/* --- 4. Hide Logos --- */
 #app .hl_header--logo,
 #app #ghl-logo {
     display: none !important;
