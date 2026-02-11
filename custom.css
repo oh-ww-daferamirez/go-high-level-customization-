@@ -1,24 +1,17 @@
 /* =========================================
    ARM - GoHighLevel Custom Skin
-   Version: 20.0 (Clean Slate / Wireframe)
+   Version: 21.0 (Paper White / Zero Dark)
    ========================================= */
 
-/* --- 0. Design Tokens (STRICT GRAYSCALE) --- */
+/* --- 0. Design Tokens (PURE WHITE) --- */
 :root {
-    /* NO COLORS. ONLY STRUCTURE. */
-    --arm-bg-sidebar: #1F2937 !important;
-    /* Neutral Gray 900 */
-    --arm-bg-body: #F3F4F6 !important;
-    /* Neutral Gray 100 */
-    --arm-bg-card: #FFFFFF !important;
-
-    --arm-text-main: #111827 !important;
-    /* Black */
-    --arm-text-inv: #FFFFFF !important;
-    /* White */
+    --arm-bg-sidebar: #FFFFFF !important;
+    /* Force WHITE */
+    --arm-bg-body: #F9FAFB !important;
+    /* Very Light Gray */
+    --arm-text-main: #000000 !important;
+    /* PITCH BLACK */
     --arm-border: #E5E7EB !important;
-    /* Gray 200 */
-
     --arm-font-family: 'Poppins', sans-serif !important;
 }
 
@@ -30,71 +23,70 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* --- 1. Sidebar Structure --- */
-/* Target only the main containers. No wildcards. */
+/* --- 1. Sidebar: REMOVE DARK BACKGROUND --- */
 #sidebar-v2,
 .sidebar-v2-location #sidebar-v2,
 .hl_settings--sidebar,
 aside {
-    background-color: var(--arm-bg-sidebar) !important;
+    background-color: #FFFFFF !important;
+    /* OVERRIDE ANY DARK THEME */
     background-image: none !important;
-    /* Kill any gradients */
-    border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-right: 1px solid #E5E7EB !important;
 }
 
-/* Sidebar Links (White) */
+/* --- 2. Sidebar Text: FORCE BLACK --- */
 #sidebar-v2 .nav-link,
+.hl_settings--sidebar a,
 aside a,
-.n-menu-item-content {
-    color: var(--arm-text-inv) !important;
-}
-
-/* Sidebar Icons (White) */
+.n-menu-item-content,
 #sidebar-v2 svg,
 aside svg,
 [class*="icon"] {
-    fill: var(--arm-text-inv) !important;
-    color: var(--arm-text-inv) !important;
+    color: #000000 !important;
+    fill: #000000 !important;
 }
 
-/* Active State (Simple Gray Highlight) */
+/* Active State (Light Gray background, Black text) */
 .nav-link.active,
 aside a.active {
-    background-color: rgba(255, 255, 255, 0.1) !important;
-    color: var(--arm-text-inv) !important;
+    background-color: #F3F4F6 !important;
+    /* Light Gray Highlight */
+    color: #000000 !important;
+    font-weight: 600 !important;
 }
 
-/* --- 2. Content Area (Reset) --- */
-/* Ensure cards and inputs are standard white */
+/* --- 3. Content & Inputs (Standardize) --- */
 .card,
 .panel,
 .container-fluid,
-.modal-content {
-    background-color: var(--arm-bg-card) !important;
-}
-
-/* --- 3. Inputs & Dropdowns (SAFETY) --- */
-/* Explicitly force standard styling to prevent bleeding */
+.modal-content,
 input,
 select,
-textarea,
+textarea {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+    border-color: #E5E7EB !important;
+}
+
+/* --- 4. Dropdowns (Force White/Black) --- */
 .dropdown-menu,
 .q-menu,
 .n-dropdown-menu {
     background-color: #FFFFFF !important;
-    color: #111827 !important;
-    /* Pitch Black Text */
-    border: 1px solid #D1D5DB !important;
+    color: #000000 !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
 }
 
-/* List Items inside Dropdowns */
 .dropdown-item,
-.dropdown-menu li,
-.q-item {
-    color: #111827 !important;
+.dropdown-menu li {
+    color: #000000 !important;
 }
 
-/* --- 4. Hide Logos --- */
+.dropdown-item:hover {
+    background-color: #F3F4F6 !important;
+}
+
+/* --- 5. Hide Logos --- */
 #app .hl_header--logo,
 #app #ghl-logo {
     display: none !important;
