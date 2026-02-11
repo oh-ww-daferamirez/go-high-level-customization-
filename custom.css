@@ -1,17 +1,23 @@
 /* =========================================
    ARM - GoHighLevel Custom Skin
-   Version: 16.0 (Precision Targeting Edition)
+   Version: 17.0 (Contrast Inversion Edition)
    ========================================= */
 
 /* --- 0. Design Tokens --- */
 :root {
     --arm-primary: #818CF8 !important;
     --arm-surface-sidebar: #424A71 !important;
-    --arm-surface-card: #FFFFFF !important;
     --arm-text-high: #111827 !important;
     --arm-text-medium: #374151 !important;
-    --arm-text-inverse: #FFFFFF !important;
-    --arm-border-subtle: #E5E7EB !important;
+
+    /* NEW: Explicit Sidebar Tokens */
+    --arm-sidebar-text-inactive: #FFFFFF !important;
+    /* Always White */
+    --arm-sidebar-text-active: #111827 !important;
+    /* Dark on Active */
+    --arm-sidebar-bg-active: #FFFFFF !important;
+    /* White Background on Active */
+
     --arm-font-family: 'Poppins', sans-serif !important;
 }
 
@@ -23,7 +29,7 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* --- 1. Sidebar Background (Container Only) --- */
+/* --- 1. Sidebar Background --- */
 #sidebar-v2,
 .sidebar-v2-location #sidebar-v2,
 .hl_settings--sidebar,
@@ -33,63 +39,77 @@ nav[class*="sidebar"] {
     border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
-/* --- 2. PRECISION TEXT TARGETING (No Wildcards) --- */
-/* Instead of saying "Everything in sidebar is white", we say "Only Links and Icons are white" */
+/* --- 2. SIDEBAR ITEMS (The Logic Fix) --- */
 
-/* Links & Items */
+/* DEFAULT STATE (Inactive) -> WHITE TEXT */
 #sidebar-v2 .nav-link,
 #sidebar-v2 .nav-item,
 .hl_settings--sidebar a,
 aside a,
 .n-menu-item-content {
-    color: var(--arm-text-inverse) !important;
+    color: var(--arm-sidebar-text-inactive) !important;
+    /* FORCE WHITE */
 }
 
-/* Icons (SVG/I) */
-#sidebar-v2 svg,
-#sidebar-v2 i,
-.hl_settings--sidebar svg,
-.hl_settings--sidebar i,
-aside svg,
-aside i,
-[class*="icon"] {
-    fill: var(--arm-text-inverse) !important;
-    color: var(--arm-text-inverse) !important;
+/* Icons in Default State */
+#sidebar-v2 .nav-link svg,
+#sidebar-v2 .nav-link i,
+aside a svg,
+aside a i {
+    fill: var(--arm-sidebar-text-inactive) !important;
+    color: var(--arm-sidebar-text-inactive) !important;
 }
 
-/* Text spans directly inside links */
+/* Text spans in Default State */
 #sidebar-v2 .nav-link span,
-.hl_settings--sidebar a span {
-    color: var(--arm-text-inverse) !important;
+aside a span {
+    color: var(--arm-sidebar-text-inactive) !important;
 }
 
-/* --- 3. Dropdowns & Modals (Safe by Default) --- */
-/* Since we didn't paint the container white, we don't need to "undo" it here. */
-/* But we force dark text just to be safe/consistent with the Design System */
 
+/* ACTIVE / HOVER STATE -> DARK TEXT on WHITE BG */
+#sidebar-v2 .nav-link.active,
+#sidebar-v2 .nav-link:hover,
+.hl_settings--sidebar a.active,
+.hl_settings--sidebar a:hover,
+aside a.active,
+aside a:hover {
+    background-color: var(--arm-sidebar-bg-active) !important;
+    /* White BG */
+    color: var(--arm-sidebar-text-active) !important;
+    /* Dark Text */
+    border-radius: 6px !important;
+}
+
+/* Icons in Active/Hover State */
+#sidebar-v2 .nav-link.active svg,
+#sidebar-v2 .nav-link:hover svg,
+.hl_settings--sidebar a.active svg,
+.hl_settings--sidebar a:hover svg {
+    fill: var(--arm-sidebar-text-active) !important;
+    /* Dark Icon */
+    color: var(--arm-sidebar-text-active) !important;
+}
+
+/* Text spans in Active/Hover State */
+#sidebar-v2 .nav-link.active span,
+#sidebar-v2 .nav-link:hover span {
+    color: var(--arm-sidebar-text-active) !important;
+    /* Dark Text */
+}
+
+/* --- 3. Dropdowns (Protection) --- */
 .dropdown-menu,
 .multiselect__content-wrapper,
-.n-base-select-menu,
 .q-menu,
-.modal-content,
-.card {
+.card,
+.modal-content {
     background-color: #FFFFFF !important;
     color: #374151 !important;
-    border: 1px solid #E5E7EB !important;
 }
 
-/* Ensure Lists inside dropdowns are dark */
-.dropdown-menu *,
-.multiselect__content-wrapper *,
-.q-menu * {
+.dropdown-menu * {
     color: #374151 !important;
-}
-
-/* Active Highlight */
-.dropdown-item.active,
-.dropdown-item:active {
-    background-color: var(--arm-primary) !important;
-    color: #FFFFFF !important;
 }
 
 /* --- 4. Inputs --- */
