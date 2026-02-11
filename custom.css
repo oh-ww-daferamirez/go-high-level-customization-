@@ -1,6 +1,6 @@
 /* =========================================
    ARM - GoHighLevel Custom Skin
-   Version: 15.0 (Omni-Target Edition)
+   Version: 16.0 (Precision Targeting Edition)
    ========================================= */
 
 /* --- 0. Design Tokens --- */
@@ -23,49 +23,85 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* --- Sidebar --- */
+/* --- 1. Sidebar Background (Container Only) --- */
 #sidebar-v2,
 .sidebar-v2-location #sidebar-v2,
 .hl_settings--sidebar,
-aside {
+aside,
+nav[class*="sidebar"] {
     background-color: var(--arm-surface-sidebar) !important;
     border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
-/* Sidebar Text - CAREFUL */
-[id*="sidebar"] *:not(.dropdown-menu):not(.dropdown-item):not(.n-base-select-menu):not(.q-menu):not(.q-list),
-aside *:not(.dropdown-menu):not(.dropdown-item):not(.n-base-select-menu):not(.q-menu):not(.q-list) {
-    color: var(--arm-text-inverse) > !important;
-    border-color: rgba(255, 255, 255, 0.1) !important;
+/* --- 2. PRECISION TEXT TARGETING (No Wildcards) --- */
+/* Instead of saying "Everything in sidebar is white", we say "Only Links and Icons are white" */
+
+/* Links & Items */
+#sidebar-v2 .nav-link,
+#sidebar-v2 .nav-item,
+.hl_settings--sidebar a,
+aside a,
+.n-menu-item-content {
+    color: var(--arm-text-inverse) !important;
 }
 
-/* Note: The specificity above is deliberately kept lower than the white box rule below */
-
-/* --- THE OMNI-RESCUE RULE --- */
-/* Target every known "popover/dropdown" framework GHL uses: Bootstrap, Vue, Quasar, NaiveUI */
-
-#app .dropdown-menu *,
-#app .multiselect__content-wrapper *,
-#app .n-dropdown-menu *,
-#app .n-base-select-menu *,
-#app .q-menu *,
-#app .q-list *,
-#app .hl_switcher * {
-    color: #374151 !important;
-    /* DARK GRAY FORCE */
-    fill: #374151 !important;
+/* Icons (SVG/I) */
+#sidebar-v2 svg,
+#sidebar-v2 i,
+.hl_settings--sidebar svg,
+.hl_settings--sidebar i,
+aside svg,
+aside i,
+[class*="icon"] {
+    fill: var(--arm-text-inverse) !important;
+    color: var(--arm-text-inverse) !important;
 }
 
-/* White Box Logic: If it looks like a card/dropdown, it gets dark text */
+/* Text spans directly inside links */
+#sidebar-v2 .nav-link span,
+.hl_settings--sidebar a span {
+    color: var(--arm-text-inverse) !important;
+}
+
+/* --- 3. Dropdowns & Modals (Safe by Default) --- */
+/* Since we didn't paint the container white, we don't need to "undo" it here. */
+/* But we force dark text just to be safe/consistent with the Design System */
+
 .dropdown-menu,
 .multiselect__content-wrapper,
 .n-base-select-menu,
-.q-menu {
+.q-menu,
+.modal-content,
+.card {
     background-color: #FFFFFF !important;
+    color: #374151 !important;
     border: 1px solid #E5E7EB !important;
 }
 
-/* --- Hide GHL Logos --- */
+/* Ensure Lists inside dropdowns are dark */
+.dropdown-menu *,
+.multiselect__content-wrapper *,
+.q-menu * {
+    color: #374151 !important;
+}
+
+/* Active Highlight */
+.dropdown-item.active,
+.dropdown-item:active {
+    background-color: var(--arm-primary) !important;
+    color: #FFFFFF !important;
+}
+
+/* --- 4. Inputs --- */
+input,
+select,
+textarea {
+    background-color: #FFFFFF !important;
+    color: #111827 !important;
+    border: 1px solid #D1D5DB !important;
+}
+
+/* --- 5. Hide GHL Logos --- */
 #app .hl_header--logo,
 #app #ghl-logo {
     display: none !important;
