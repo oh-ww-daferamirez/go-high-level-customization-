@@ -1,6 +1,6 @@
 /* =========================================
    ARM - GoHighLevel Custom Skin
-   Version: 28.0 (Visual Balance & Contrast Safety)
+   Version: 29.0 (Contrast Harmony - Two Tone)
    ========================================= */
 
 /* --- 0. Design Tokens (PASTEL LIGHT) --- */
@@ -41,14 +41,63 @@ aside {
     border-right: 1px solid rgba(255, 255, 255, 0.5) !important;
 }
 
-/* --- 2. THE BLUE KILLER (Utility Overrides) --- */
-/* Target Tailwind/Bootstrap Utilities globally */
+/* --- 2. THE BLUE KILLER (Tier 1: SOLID/DARK) --- */
+/* Target generic or dark blue utilities -> Force Indigo BG + White Text */
 [class*="bg-blue-"],
 [class*="bg-primary"],
-.bg-primary {
+.bg-primary,
+.btn-primary,
+.hl_button--primary,
+.badge-primary {
     background-color: var(--arm-mist-accent) !important;
+    border-color: var(--arm-mist-accent) !important;
 }
 
+/* Tier 1 Text High Contrast Safety (White) */
+[class*="bg-blue-"] *,
+[class*="bg-primary"] *,
+.bg-primary *,
+.btn-primary *,
+.hl_button--primary *,
+.badge-primary * {
+    color: #FFFFFF !important;
+    fill: #FFFFFF !important;
+}
+
+/* --- 3. THE BLUE KILLER (Tier 2: LIGHT/PASTEL OVERRIDE) --- */
+/* Target light blue utilities -> Force Lavender BG + Indigo Text */
+/* This MUST come after Tier 1 to override it */
+[class*="bg-blue-50"],
+[class*="bg-blue-100"],
+[class*="bg-blue-200"],
+[class*="bg-primary-50"],
+[class*="bg-primary-100"],
+[class*="bg-primary-light"],
+.badge-primary-light,
+.bg-light-blue,
+.badge-light,
+.chat-bubble-mine {
+    background-color: var(--arm-mist-start) !important;
+    /* Lavender */
+    color: var(--arm-mist-accent) !important;
+    /* Indigo */
+    border-color: transparent !important;
+}
+
+/* Tier 2 Text High Contrast Safety (Indigo) */
+[class*="bg-blue-50"] *,
+[class*="bg-blue-100"] *,
+[class*="bg-blue-200"] *,
+[class*="bg-primary-50"] *,
+[class*="bg-primary-100"] *,
+.badge-primary-light *,
+.badge-light *,
+.chat-bubble-mine * {
+    color: var(--arm-mist-accent) !important;
+    fill: var(--arm-mist-accent) !important;
+}
+
+/* --- 4. TEXT COLORS (Headings & Links) --- */
 [class*="text-blue-"],
 [class*="text-primary"],
 .text-primary,
@@ -56,31 +105,8 @@ aside {
     color: var(--arm-mist-accent) !important;
 }
 
-[class*="border-blue-"],
-[class*="border-primary"],
-.border-primary {
-    border-color: var(--arm-mist-accent) !important;
-}
-
-/* --- 3. HIGH CONTRAST ENFORCER (Safety Net) --- */
-/* If it's Indigo Background, Text MUST be White. */
-[class*="bg-blue-"] *,
-[class*="bg-primary"] *,
-.bg-primary *,
-.btn-primary *,
-.hl_button--primary *,
-.n-button--primary-type *,
-.badge-primary *,
-.label-primary * {
-    color: #FFFFFF !important;
-    fill: #FFFFFF !important;
-}
-
-/* --- 4. SIDEBAR RECOVERY (Nuclear Contrast Fix) --- */
-/* 
-   PROBLEM: Blue Killer bleeds into icon containers.
-   FIX: Force ALL descendants of inactive links to be TRANSPARENT background and DARK text.
-*/
+/* --- 5. SIDEBAR RECOVERY (Nuclear Contrast Fix) --- */
+/* Force ALL descendants of inactive links to be TRANSPARENT bg and DARK text */
 #sidebar-v2 .nav-link:not(.active),
 #sidebar-v2 .nav-link:not(.active) *,
 aside a:not(.active),
@@ -112,9 +138,7 @@ aside a.active * {
     background-color: transparent !important;
 }
 
-
-/* --- 5. BUTTON GEOMETRY (Standardization) --- */
-/* Fix "Squeezed" buttons and inconsistent padding */
+/* --- 6. BUTTON GEOMETRY (Standardization) --- */
 .btn,
 .hl_button,
 button,
@@ -123,16 +147,13 @@ button,
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    /* Geometry */
     min-height: 38px !important;
     padding: 6px 16px !important;
     line-height: 1.5 !important;
-    /* Font */
     font-family: var(--arm-font-family);
     font-weight: 500 !important;
     letter-spacing: 0.3px !important;
     border-radius: 8px !important;
-    /* Spacing */
     gap: 8px !important;
 }
 
@@ -144,27 +165,7 @@ button,
     padding-right: 18px !important;
 }
 
-/* --- 6. Button Colors (Ethereal Mist) --- */
-/* Primary */
-.btn-primary,
-.hl_button--primary,
-.n-button--primary-type,
-.q-btn.bg-primary,
-button[class*="blue"],
-a[class*="btn-primary"] {
-    background-color: var(--arm-mist-accent) !important;
-    border-color: var(--arm-mist-accent) !important;
-    color: #FFFFFF !important;
-    box-shadow: 0 2px 4px rgba(79, 70, 229, 0.2) !important;
-}
-
-.btn-primary:hover,
-.hl_button--primary:hover {
-    background-color: var(--arm-mist-accent-hover) !important;
-    transform: translateY(-1px);
-}
-
-/* Secondary / Outline */
+/* Secondary / Outline Buttons */
 .btn-white,
 .btn-light,
 .hl_button--default,
@@ -173,13 +174,20 @@ a[class*="btn-primary"] {
 [class*="btn-outline-blue"] {
     background-color: #FFFFFF !important;
     border: 1px solid var(--arm-mist-accent) !important;
-    /* Gentle Indigo Border */
     color: var(--arm-mist-accent) !important;
 }
 
 .btn-white:hover,
 .hl_button--default:hover {
     background-color: var(--arm-mist-start) !important;
+}
+
+/* Secondary Wrapper Text Force (Indigo) */
+.btn-white *,
+.hl_button--default *,
+.btn-outline-primary * {
+    color: var(--arm-mist-accent) !important;
+    fill: var(--arm-mist-accent) !important;
 }
 
 /* --- 7. Navigation & Tabs --- */
@@ -193,12 +201,10 @@ ul[role="tablist"] li a.active,
     background-color: transparent !important;
 }
 
-/* Ensure tab text is Indigo (override High Contrast Enforcer if tab is active but transparent BG) */
 .nav-tabs .nav-link.active *,
 .n-tabs-tab--active * {
     color: var(--arm-mist-accent) !important;
 }
-
 
 /* --- 8. Forms & Pagination --- */
 .page-item.active .page-link,
