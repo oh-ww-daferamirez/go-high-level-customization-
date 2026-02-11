@@ -1,6 +1,6 @@
 /* =========================================
    ARM - GoHighLevel Custom Skin
-   Version: 22.0 (Ethereal Mist)
+   Version: 23.0 (Buttons & Accents)
    ========================================= */
 
 /* --- 0. Design Tokens (PASTEL LIGHT) --- */
@@ -16,6 +16,8 @@
     /* Pure White */
     --arm-mist-accent: #4F46E5 !important;
     /* Indigo for Focus */
+    --arm-mist-accent-hover: #4338ca !important;
+    /* Darker Indigo */
 
     --arm-bg-body: #F9FAFB !important;
     --arm-font-family: 'Poppins', sans-serif !important;
@@ -29,7 +31,7 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* --- 1. Sidebar: ETHEREAL GRADIENT --- */
+/* --- 1. Sidebar --- */
 #sidebar-v2,
 .sidebar-v2-location #sidebar-v2,
 .hl_settings--sidebar,
@@ -38,7 +40,6 @@ aside {
     border-right: 1px solid rgba(255, 255, 255, 0.5) !important;
 }
 
-/* --- 2. Sidebar Text: CHARCOAL (Contrast) --- */
 #sidebar-v2 .nav-link,
 .hl_settings--sidebar a,
 aside a,
@@ -51,26 +52,68 @@ aside svg,
     font-weight: 500 !important;
 }
 
-/* --- 3. Active State: PURE WHITE CARD --- */
 .nav-link.active,
 aside a.active {
     background-color: var(--arm-mist-active) !important;
     color: var(--arm-mist-accent) !important;
-    /* Indigo Text */
     box-shadow: 0 4px 6px rgba(171, 196, 255, 0.4) !important;
-    /* Soft Blue Shadow */
     font-weight: 600 !important;
     border-radius: 8px !important;
 }
 
-/* Icons in Active State */
 .nav-link.active svg,
 aside a.active svg {
     fill: var(--arm-mist-accent) !important;
     color: var(--arm-mist-accent) !important;
 }
 
-/* --- 4. Content Area --- */
+/* --- 2. BUTTONS CUSTOMIZATION (New & Manage View) --- */
+
+/* Primary Action Buttons (The "New" Button) */
+/* Targets: .btn-primary, .hl_button--primary, NaiveUI Primary, Quasar Primary */
+.btn-primary,
+.hl_button--primary,
+.n-button--primary-type,
+.q-btn.bg-primary,
+button[class*="blue"],
+/* Bruteforce blue buttons */
+#appointment-calendar .hl_button--primary {
+    background-color: var(--arm-mist-accent) !important;
+    border-color: var(--arm-mist-accent) !important;
+    color: #FFFFFF !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 6px rgba(79, 70, 229, 0.2) !important;
+    font-weight: 500 !important;
+    text-transform: none !important;
+    /* Remove harsh CAPS if present */
+}
+
+.btn-primary:hover,
+.hl_button--primary:hover,
+.n-button--primary-type:hover {
+    background-color: var(--arm-mist-accent-hover) !important;
+}
+
+/* Secondary/Outline Buttons (The "Manage View" Button) */
+.btn-white,
+.btn-light,
+.hl_button--default,
+.n-button--default-type,
+.q-btn--outline {
+    background-color: #FFFFFF !important;
+    border: 1px solid var(--arm-mist-accent) !important;
+    /* Gentle Indigo Border */
+    color: var(--arm-mist-accent) !important;
+    border-radius: 8px !important;
+}
+
+.btn-white:hover,
+.hl_button--default:hover {
+    background-color: var(--arm-mist-start) !important;
+    /* Lavender Hover */
+}
+
+/* --- 3. Content Area --- */
 .card,
 .panel,
 .container-fluid,
@@ -83,7 +126,7 @@ textarea {
     border-color: #E5E7EB !important;
 }
 
-/* --- 5. Dropdowns (Clean White) --- */
+/* --- 4. Dropdowns --- */
 .dropdown-menu,
 .q-menu,
 .n-dropdown-menu {
@@ -102,7 +145,7 @@ textarea {
     background-color: #F3F4F6 !important;
 }
 
-/* --- 6. Hide Logos --- */
+/* --- 5. Hide Logos --- */
 #app .hl_header--logo,
 #app #ghl-logo {
     display: none !important;
