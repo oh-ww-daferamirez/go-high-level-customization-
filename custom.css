@@ -1,6 +1,6 @@
 /* =========================================
    ARM - GoHighLevel Custom Skin
-   Version: 30.1 (Rollback of Header Fixes)
+   Version: 32.0 (Header Factory Reset & Geometry Safety)
    ========================================= */
 
 /* --- 0. Design Tokens (PASTEL LIGHT) --- */
@@ -41,7 +41,17 @@ aside {
     border-right: 1px solid rgba(255, 255, 255, 0.5) !important;
 }
 
-/* --- 2. THE BLUE KILLER (Tier 1: SOLID/DARK) --- */
+/* --- 2. HEADER PROTECTION (Factory Default) --- */
+/* 
+   We explicitly DO NOT style:
+   - .hl_header_avatar
+   - .bg-orange-600 (Bell)
+   - .bg-green-500 (Status)
+   
+   These must remain Native GHL. We also ensure our Geometry rules don't crush them.
+*/
+
+/* --- 3. THE BLUE KILLER (Tier 1: SOLID/DARK) --- */
 [class*="bg-blue-"],
 [class*="bg-primary"],
 .bg-primary,
@@ -52,6 +62,7 @@ aside {
     border-color: var(--arm-mist-accent) !important;
 }
 
+/* Ensure we don't accidentally target text inside non-blue containers if nesting happens */
 [class*="bg-blue-"] *,
 [class*="bg-primary"] *,
 .bg-primary *,
@@ -62,7 +73,7 @@ aside {
     fill: #FFFFFF !important;
 }
 
-/* --- 3. THE BLUE KILLER (Tier 2: LIGHT/PASTEL OVERRIDE) --- */
+/* --- 4. THE BLUE KILLER (Tier 2: LIGHT/PASTEL OVERRIDE) --- */
 [class*="bg-blue-50"],
 [class*="bg-blue-100"],
 [class*="bg-blue-200"],
@@ -90,7 +101,7 @@ aside {
     fill: var(--arm-mist-accent) !important;
 }
 
-/* --- 4. NAIVE UI BUTTONS (Specific Interaction Fixes) --- */
+/* --- 5. NAIVE UI BUTTONS (Specific Interaction Fixes) --- */
 .n-button--primary-type,
 .n-button--info-type,
 .n-button--success-type {
@@ -125,7 +136,7 @@ aside {
     fill: var(--arm-mist-accent) !important;
 }
 
-/* --- 5. SIDEBAR RECOVERY (Nuclear Contrast Fix) --- */
+/* --- 6. SIDEBAR RECOVERY (Nuclear Contrast Fix) --- */
 #sidebar-v2 .nav-link:not(.active),
 #sidebar-v2 .nav-link:not(.active) *,
 aside a:not(.active),
@@ -153,10 +164,11 @@ aside a.active * {
     background-color: transparent !important;
 }
 
-/* --- 6. BUTTON GEOMETRY --- */
-.btn,
+/* --- 7. BUTTON GEOMETRY (SCOPED & SAFE) --- */
+/* Only apply to actual button elements to avoid crushing Avatars/Icons */
+button.btn,
+a.btn,
 .hl_button,
-button,
 .q-btn {
     display: inline-flex !important;
     align-items: center !important;
@@ -171,6 +183,7 @@ button,
     gap: 8px !important;
 }
 
+/* n-button Relaxed */
 .n-button {
     display: inline-flex !important;
     align-items: center !important;
@@ -181,14 +194,19 @@ button,
     font-weight: 500 !important;
 }
 
-[class*="rounded-full"],
-.rounded-full {
+/* 
+   CRITICAL FIX: Scope "rounded-full" geometry only to BUTTONS.
+   This prevents Avatars (which are div.rounded-full) from getting 18px padding.
+*/
+button[class*="rounded-full"],
+a[class*="rounded-full"],
+.btn.rounded-full {
     border-radius: 9999px !important;
     padding-left: 18px !important;
     padding-right: 18px !important;
 }
 
-/* --- 7. Button Colors (Legacy / Wildcards) --- */
+/* --- 8. Button Colors (Legacy / Wildcards) --- */
 .btn-white,
 .btn-light,
 .hl_button--default,
@@ -211,7 +229,7 @@ button,
     fill: var(--arm-mist-accent) !important;
 }
 
-/* --- 8. Navigation, Forms, Reset --- */
+/* --- 9. Navigation, Forms, Reset --- */
 .nav-tabs .nav-link.active,
 .n-tabs-tab--active,
 .q-tab--active,
