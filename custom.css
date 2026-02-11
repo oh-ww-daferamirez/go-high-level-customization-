@@ -1,6 +1,6 @@
 /* =========================================
    ARM - GoHighLevel Custom Skin
-   Version: 29.0 (Contrast Harmony - Two Tone)
+   Version: 30.0 (Interaction Polish - n-button)
    ========================================= */
 
 /* --- 0. Design Tokens (PASTEL LIGHT) --- */
@@ -42,7 +42,6 @@ aside {
 }
 
 /* --- 2. THE BLUE KILLER (Tier 1: SOLID/DARK) --- */
-/* Target generic or dark blue utilities -> Force Indigo BG + White Text */
 [class*="bg-blue-"],
 [class*="bg-primary"],
 .bg-primary,
@@ -53,7 +52,6 @@ aside {
     border-color: var(--arm-mist-accent) !important;
 }
 
-/* Tier 1 Text High Contrast Safety (White) */
 [class*="bg-blue-"] *,
 [class*="bg-primary"] *,
 .bg-primary *,
@@ -65,8 +63,6 @@ aside {
 }
 
 /* --- 3. THE BLUE KILLER (Tier 2: LIGHT/PASTEL OVERRIDE) --- */
-/* Target light blue utilities -> Force Lavender BG + Indigo Text */
-/* This MUST come after Tier 1 to override it */
 [class*="bg-blue-50"],
 [class*="bg-blue-100"],
 [class*="bg-blue-200"],
@@ -78,13 +74,10 @@ aside {
 .badge-light,
 .chat-bubble-mine {
     background-color: var(--arm-mist-start) !important;
-    /* Lavender */
     color: var(--arm-mist-accent) !important;
-    /* Indigo */
     border-color: transparent !important;
 }
 
-/* Tier 2 Text High Contrast Safety (Indigo) */
 [class*="bg-blue-50"] *,
 [class*="bg-blue-100"] *,
 [class*="bg-blue-200"] *,
@@ -97,16 +90,46 @@ aside {
     fill: var(--arm-mist-accent) !important;
 }
 
-/* --- 4. TEXT COLORS (Headings & Links) --- */
-[class*="text-blue-"],
-[class*="text-primary"],
-.text-primary,
-.link-primary {
+/* --- 4. NAIVE UI BUTTONS (Specific Interaction Fixes) --- */
+/* SOLID TYPES (Primary, Info, Success) -> Force Indigo BG / White Text */
+.n-button--primary-type,
+.n-button--info-type,
+.n-button--success-type {
+    background-color: var(--arm-mist-accent) !important;
+    color: #FFFFFF !important;
+    border: 1px solid var(--arm-mist-accent) !important;
+    --n-text-color: #FFFFFF !important;
+    --n-text-color-hover: #FFFFFF !important;
+    --n-text-color-pressed: #FFFFFF !important;
+    --n-text-color-focus: #FFFFFF !important;
+}
+
+.n-button--primary-type *,
+.n-button--info-type *,
+.n-button--success-type * {
+    color: #FFFFFF !important;
+    fill: #FFFFFF !important;
+}
+
+/* GHOST/DEFAULT TYPES (Outline, Thumbs Up) -> Force White BG / Indigo Text */
+.n-button--default-type,
+.n-button--tertiary-type,
+.n-button--quaternary-type {
+    background-color: #FFFFFF !important;
     color: var(--arm-mist-accent) !important;
+    border: 1px solid var(--arm-mist-accent) !important;
+    --n-text-color: var(--arm-mist-accent) !important;
+    --n-text-color-hover: var(--arm-mist-accent) !important;
+}
+
+.n-button--default-type *,
+.n-button--tertiary-type *,
+.n-button--quaternary-type * {
+    color: var(--arm-mist-accent) !important;
+    fill: var(--arm-mist-accent) !important;
 }
 
 /* --- 5. SIDEBAR RECOVERY (Nuclear Contrast Fix) --- */
-/* Force ALL descendants of inactive links to be TRANSPARENT bg and DARK text */
 #sidebar-v2 .nav-link:not(.active),
 #sidebar-v2 .nav-link:not(.active) *,
 aside a:not(.active),
@@ -116,34 +139,30 @@ aside a:not(.active) * {
     box-shadow: none !important;
     border: none !important;
     color: var(--arm-mist-text) !important;
-    /* Charcoal */
     fill: var(--arm-mist-text) !important;
 }
 
-/* Active State (White Card Preservation) - EXEMPT from High Contrast Enforcer */
+/* Active State */
 .nav-link.active,
 aside a.active {
     background-color: var(--arm-mist-active) !important;
     color: var(--arm-mist-accent) !important;
     box-shadow: 0 4px 6px rgba(171, 196, 255, 0.4) !important;
     font-weight: 600 !important;
-    border-radius: 8px !important;
 }
 
 .nav-link.active *,
 aside a.active * {
     color: var(--arm-mist-accent) !important;
-    /* Re-apply Indigo Text */
     fill: var(--arm-mist-accent) !important;
     background-color: transparent !important;
 }
 
-/* --- 6. BUTTON GEOMETRY (Standardization) --- */
+/* --- 6. BUTTON GEOMETRY (Standardization with n-button Safety) --- */
 .btn,
 .hl_button,
 button,
-.q-btn,
-.n-button {
+.q-btn {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -157,6 +176,19 @@ button,
     gap: 8px !important;
 }
 
+/* n-button SPECIFIC GEOMETRY (Relaxed for Icons) */
+.n-button {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    /* Do NOT enforce min-height/width strictly to allow square icon buttons */
+    /* Use moderate padding */
+    padding: 6px 12px !important;
+    border-radius: 8px !important;
+    font-family: var(--arm-font-family);
+    font-weight: 500 !important;
+}
+
 /* Specific Pill Buttons (Quick Filters) */
 [class*="rounded-full"],
 .rounded-full {
@@ -165,11 +197,11 @@ button,
     padding-right: 18px !important;
 }
 
-/* Secondary / Outline Buttons */
+/* --- 7. Button Colors (Legacy / Wildcards) --- */
+/* Secondary / Outline */
 .btn-white,
 .btn-light,
 .hl_button--default,
-.n-button--default-type,
 .q-btn--outline,
 [class*="btn-outline-blue"] {
     background-color: #FFFFFF !important;
@@ -182,7 +214,6 @@ button,
     background-color: var(--arm-mist-start) !important;
 }
 
-/* Secondary Wrapper Text Force (Indigo) */
 .btn-white *,
 .hl_button--default *,
 .btn-outline-primary * {
@@ -190,11 +221,10 @@ button,
     fill: var(--arm-mist-accent) !important;
 }
 
-/* --- 7. Navigation & Tabs --- */
+/* --- 8. Navigation, Forms, Reset --- */
 .nav-tabs .nav-link.active,
 .n-tabs-tab--active,
 .q-tab--active,
-ul[role="tablist"] li a.active,
 [id*="smart-list"] .active {
     color: var(--arm-mist-accent) !important;
     border-bottom: 2px solid var(--arm-mist-accent) !important;
@@ -206,7 +236,6 @@ ul[role="tablist"] li a.active,
     color: var(--arm-mist-accent) !important;
 }
 
-/* --- 8. Forms & Pagination --- */
 .page-item.active .page-link,
 .n-pagination-item--active {
     background-color: var(--arm-mist-accent) !important;
@@ -225,30 +254,11 @@ textarea:focus {
     box-shadow: 0 0 0 3px var(--arm-mist-focus-ring) !important;
 }
 
-.form-check-input:checked,
-input[type="checkbox"]:checked,
-input[type="radio"]:checked {
-    background-color: var(--arm-mist-accent) !important;
-    border-color: var(--arm-mist-accent) !important;
-}
-
-/* --- 9. Reset & Dropdowns --- */
-.card,
-.panel,
-input,
-select,
-textarea,
 .dropdown-menu {
     background-color: #FFFFFF !important;
-    color: #111827 !important;
-    border-color: #E5E7EB !important;
+    color: #374151 !important;
 }
 
-.dropdown-item:hover {
-    background-color: #F3F4F6 !important;
-}
-
-/* --- 10. Hide Logos --- */
 #app .hl_header--logo,
 #app #ghl-logo {
     display: none !important;
