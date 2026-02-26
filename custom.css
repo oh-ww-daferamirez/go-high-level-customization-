@@ -271,3 +271,52 @@ textarea:focus {
 #app #ghl-logo {
     display: none !important;
 }
+
+/* --- 10. ICON VISIBILITY FIX (Cards / Content Only) --- */
+/*
+   Problem:
+   - Many GHL icons are SVGs that use `stroke` (not `fill`)
+   - Our earlier color rules mostly set `fill`, so icons can look faint/invisible
+   - We keep the header native by scoping to content cards and excluding header wrappers
+*/
+
+:root {
+    --arm-icon-bg-soft: rgba(79, 70, 229, 0.14) !important;
+    --arm-icon-fg-strong: #4338ca !important;
+}
+
+/* Make SVG icons inherit visible color consistently (fill + stroke) */
+.card svg,
+.hl-card svg,
+.n-card svg,
+[class*="card"] svg {
+    color: inherit !important;
+    stroke: currentColor !important;
+}
+
+/* Improve contrast for common icon pills/circles inside content cards */
+.card [class*="rounded-full"]:not(.hl_header_avatar):not(.avatar),
+.hl-card [class*="rounded-full"]:not(.hl_header_avatar):not(.avatar),
+.n-card [class*="rounded-full"]:not(.hl_header_avatar):not(.avatar),
+[class*="card"] [class*="rounded-full"]:not(.hl_header_avatar):not(.avatar) {
+    background-color: var(--arm-icon-bg-soft) !important;
+    color: var(--arm-icon-fg-strong) !important;
+}
+
+.card [class*="rounded-full"] svg,
+.hl-card [class*="rounded-full"] svg,
+.n-card [class*="rounded-full"] svg,
+[class*="card"] [class*="rounded-full"] svg {
+    stroke: currentColor !important;
+    fill: currentColor !important;
+    opacity: 1 !important;
+}
+
+/* If GHL uses icon fonts or generic icon classes inside cards */
+.card i,
+.hl-card i,
+.n-card i,
+[class*="card"] [class*="icon"] {
+    color: var(--arm-icon-fg-strong) !important;
+    opacity: 1 !important;
+}
