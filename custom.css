@@ -1,6 +1,6 @@
 /* =========================================
    ARM - GoHighLevel Custom Skin
-   Version: 33.2 (JS-Assisted Visibility Recovery)
+   Version: 33.3 (Icon Neutral Mode)
    ========================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -410,4 +410,40 @@ select:focus-visible,
 textarea:focus-visible {
     outline: 2px solid var(--arm-mist-accent) !important;
     outline-offset: 2px !important;
+}
+
+/* --- 9. Icon Neutral Mode (restore native icon look) --- */
+/* Activated by custom.js via html[data-arm-icon-neutral] */
+html[data-arm-icon-neutral] #sidebar-v2 .nav-link svg,
+html[data-arm-icon-neutral] .hl_settings--sidebar .nav-link svg,
+html[data-arm-icon-neutral] aside .nav-link svg,
+html[data-arm-icon-neutral] #sidebar-v2 .nav-link i,
+html[data-arm-icon-neutral] .hl_settings--sidebar .nav-link i,
+html[data-arm-icon-neutral] aside .nav-link i,
+html[data-arm-icon-neutral] #app header svg,
+html[data-arm-icon-neutral] #app header i,
+html[data-arm-icon-neutral] .hl_header svg,
+html[data-arm-icon-neutral] .hl_header i,
+html[data-arm-icon-neutral] .card svg,
+html[data-arm-icon-neutral] .hl-card svg,
+html[data-arm-icon-neutral] .n-card svg,
+html[data-arm-icon-neutral] [class*="card"] svg,
+html[data-arm-icon-neutral] .card i,
+html[data-arm-icon-neutral] .hl-card i,
+html[data-arm-icon-neutral] .n-card i,
+html[data-arm-icon-neutral] [class*="card"] i {
+    color: revert !important;
+    fill: revert !important;
+    stroke: revert !important;
+    opacity: 1 !important;
+    filter: none !important;
+}
+
+/* Remove our custom circular icon treatments in cards */
+html[data-arm-icon-neutral] .card [class*="rounded-full"],
+html[data-arm-icon-neutral] .hl-card [class*="rounded-full"],
+html[data-arm-icon-neutral] .n-card [class*="rounded-full"],
+html[data-arm-icon-neutral] [class*="card"] [class*="rounded-full"] {
+    background-color: revert !important;
+    color: revert !important;
 }
