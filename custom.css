@@ -1,6 +1,6 @@
 /* =========================================
    ARM - GoHighLevel Custom Skin
-   Version: 33.3 (Icon Neutral Mode)
+   Version: 33.4 (Header Icon Native Reset)
    ========================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -446,4 +446,32 @@ html[data-arm-icon-neutral] .n-card [class*="rounded-full"],
 html[data-arm-icon-neutral] [class*="card"] [class*="rounded-full"] {
     background-color: revert !important;
     color: revert !important;
+}
+
+/* Header topbar: undo generic button/icon styling and keep icons readable */
+html[data-arm-icon-neutral] #app header .q-btn,
+html[data-arm-icon-neutral] #app header .btn,
+html[data-arm-icon-neutral] #app header .hl_button,
+html[data-arm-icon-neutral] .hl_header .q-btn,
+html[data-arm-icon-neutral] .hl_header .btn,
+html[data-arm-icon-neutral] .hl_header .hl_button {
+    min-height: revert !important;
+    height: revert !important;
+    padding: revert !important;
+    gap: revert !important;
+    border-radius: revert !important;
+    line-height: normal !important;
+    letter-spacing: normal !important;
+    box-shadow: revert !important;
+}
+
+/* Non-colored header action icons: make sure they don't disappear */
+html[data-arm-icon-neutral] #app header button:not(.bg-orange-600):not(.bg-green-500) svg,
+html[data-arm-icon-neutral] #app header [role="button"]:not(.bg-orange-600):not(.bg-green-500) svg,
+html[data-arm-icon-neutral] .hl_header button:not(.bg-orange-600):not(.bg-green-500) svg,
+html[data-arm-icon-neutral] .hl_header [role="button"]:not(.bg-orange-600):not(.bg-green-500) svg {
+    color: #374151 !important;
+    fill: currentColor !important;
+    stroke: currentColor !important;
+    opacity: 1 !important;
 }
