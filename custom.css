@@ -1,6 +1,6 @@
 /* =========================================
    ARM - GoHighLevel Custom Skin
-   Version: 33.1 (Sidebar Contrast Recovery)
+   Version: 33.2 (JS-Assisted Visibility Recovery)
    ========================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -124,6 +124,16 @@ aside .nav-link.active * {
     color: inherit !important;
     fill: currentColor !important;
     stroke: currentColor !important;
+    opacity: 1 !important;
+}
+
+/* Extra specificity once custom.js marks the page */
+html[data-arm-visibility-fix] #sidebar-v2 .nav-link,
+html[data-arm-visibility-fix] .hl_settings--sidebar .nav-link,
+html[data-arm-visibility-fix] aside .nav-link,
+html[data-arm-visibility-fix] #sidebar-v2 .nav-link *,
+html[data-arm-visibility-fix] .hl_settings--sidebar .nav-link *,
+html[data-arm-visibility-fix] aside .nav-link * {
     opacity: 1 !important;
 }
 
