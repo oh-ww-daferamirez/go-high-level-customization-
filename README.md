@@ -10,7 +10,7 @@ Para aplicar este diseño a tu agencia o sub-cuenta, ve a:
 
 ### 1. Head Tracking Code (CSS v32.0)
 ```html
-<link rel="stylesheet" href="https://go-high-level-customization.vercel.app/custom.css?v=32.0">
+<link rel="stylesheet" href="https://go-high-level-customization.vercel.app/custom.css?v=32.1">
 ```
 
 ### 2. Body Tracking Code (JS v16.0)
