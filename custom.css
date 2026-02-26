@@ -1,477 +1,92 @@
 /* =========================================
    ARM - GoHighLevel Custom Skin
-   Version: 33.4 (Header Icon Native Reset)
+   Version: 34.0 (Conservative Sidebar Base)
+   Scope: Sidebar only (no icon/header overrides)
    ========================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-/* --- 0. Tokens --- */
 :root {
-    --arm-mist-start: #d7e3fc !important;
-    --arm-mist-end: #abc4ff !important;
-    --arm-mist-text: #374151 !important;
-    --arm-mist-text-soft: #64748b !important;
-    --arm-mist-active: #ffffff !important;
-    --arm-mist-accent: #4f46e5 !important;
-    --arm-mist-accent-hover: #4338ca !important;
-    --arm-mist-focus-ring: rgba(79, 70, 229, 0.22) !important;
-    --arm-bg-body: #f9fafb !important;
-
-    --arm-icon-bg-soft: rgba(79, 70, 229, 0.14) !important;
-    --arm-icon-fg-strong: #4338ca !important;
-    --arm-card-border: rgba(148, 163, 184, 0.22) !important;
-
+    --arm-sidebar-bg: #b9c8ee !important;
+    --arm-sidebar-text: #334155 !important;
+    --arm-sidebar-text-muted: #475569 !important;
+    --arm-sidebar-active-bg: rgba(255, 255, 255, 0.82) !important;
+    --arm-sidebar-active-text: #111827 !important;
+    --arm-sidebar-hover-bg: rgba(255, 255, 255, 0.34) !important;
+    --arm-sidebar-divider: rgba(255, 255, 255, 0.35) !important;
     --arm-font-family: "Poppins", sans-serif !important;
 }
 
-/* --- 1. Base --- */
 html,
 body {
     font-family: var(--arm-font-family);
     -webkit-font-smoothing: antialiased;
 }
 
-body {
-    color: var(--arm-mist-text);
-    background-color: var(--arm-bg-body);
-}
-
-/* Keep media/logo/avatar rendering untouched */
-img,
-video,
-canvas,
-iframe {
-    filter: none !important;
-}
-
-/* --- 2. Header Protection (Native GHL) --- */
-.hl_header,
-[class*="hl-header"],
-#app header {
-    color: inherit;
-}
-
-.hl_header .hl_header_avatar,
-#app .hl_header_avatar,
-#app .bg-orange-600,
-#app .bg-green-500 {
-    filter: none !important;
-}
-
-#app header svg,
-#app .hl_header svg,
-#app [class*="header"] svg {
-    opacity: 1 !important;
-}
-
-/* --- 3. Sidebar (visual only, no global descendants) --- */
+/* Sidebar container only */
 #sidebar-v2,
 .sidebar-v2-location #sidebar-v2,
 .hl_settings--sidebar {
-    background: linear-gradient(180deg, var(--arm-mist-start) 0%, var(--arm-mist-end) 100%) !important;
-    border-right: 1px solid rgba(255, 255, 255, 0.55) !important;
+    background: var(--arm-sidebar-bg) !important;
+    border-right: 1px solid var(--arm-sidebar-divider) !important;
 }
 
+/* Keep link content readable, but do not force icon fill/stroke */
 #sidebar-v2 .nav-link,
 .hl_settings--sidebar .nav-link,
-aside .nav-link {
-    color: var(--arm-mist-text) !important;
+#sidebar-v2 a,
+.hl_settings--sidebar a {
+    color: var(--arm-sidebar-text) !important;
     opacity: 1 !important;
-}
-
-#sidebar-v2 .nav-link svg,
-#sidebar-v2 .nav-link i,
-.hl_settings--sidebar .nav-link svg,
-.hl_settings--sidebar .nav-link i,
-aside .nav-link svg,
-aside .nav-link i {
-    color: currentColor !important;
-    fill: currentColor !important;
-    stroke: currentColor !important;
-    opacity: 1 !important;
-}
-
-#sidebar-v2 .nav-link *,
-.hl_settings--sidebar .nav-link *,
-aside .nav-link * {
-    color: inherit !important;
-    fill: currentColor !important;
-    stroke: currentColor !important;
-    opacity: 1 !important;
-}
-
-#sidebar-v2 .nav-link:not(.active),
-.hl_settings--sidebar .nav-link:not(.active),
-aside .nav-link:not(.active) {
-    background: transparent !important;
-    box-shadow: none !important;
-    border: 0 !important;
-}
-
-#sidebar-v2 .nav-link.active,
-.hl_settings--sidebar .nav-link.active,
-aside .nav-link.active {
-    background-color: var(--arm-mist-active) !important;
-    color: var(--arm-mist-accent) !important;
-    box-shadow: 0 4px 10px rgba(171, 196, 255, 0.35) !important;
-    font-weight: 600 !important;
     border-radius: 10px !important;
 }
 
-#sidebar-v2 .nav-link.active *,
-.hl_settings--sidebar .nav-link.active *,
-aside .nav-link.active * {
-    color: inherit !important;
-    fill: currentColor !important;
-    stroke: currentColor !important;
-    opacity: 1 !important;
+/* Hover (conservative) */
+#sidebar-v2 .nav-link:hover,
+.hl_settings--sidebar .nav-link:hover,
+#sidebar-v2 a:hover,
+.hl_settings--sidebar a:hover {
+    background-color: var(--arm-sidebar-hover-bg) !important;
 }
 
-/* Extra specificity once custom.js marks the page */
-html[data-arm-visibility-fix] #sidebar-v2 .nav-link,
-html[data-arm-visibility-fix] .hl_settings--sidebar .nav-link,
-html[data-arm-visibility-fix] aside .nav-link,
-html[data-arm-visibility-fix] #sidebar-v2 .nav-link *,
-html[data-arm-visibility-fix] .hl_settings--sidebar .nav-link *,
-html[data-arm-visibility-fix] aside .nav-link * {
-    opacity: 1 !important;
+/* Active item */
+#sidebar-v2 .nav-link.active,
+.hl_settings--sidebar .nav-link.active,
+#sidebar-v2 a.active,
+.hl_settings--sidebar a.active,
+#sidebar-v2 [aria-current="page"],
+.hl_settings--sidebar [aria-current="page"] {
+    background-color: var(--arm-sidebar-active-bg) !important;
+    color: var(--arm-sidebar-active-text) !important;
+    font-weight: 600 !important;
+    box-shadow: none !important;
 }
 
-/* --- 4. Buttons (explicit, not wildcard descendants) --- */
-button.btn,
-a.btn,
-.hl_button,
-.q-btn,
-.n-button {
-    font-family: var(--arm-font-family) !important;
-    border-radius: 8px !important;
+/* Settings lists often render plain links/spans; keep text legible */
+.hl_settings--sidebar,
+.hl_settings--sidebar * {
+    color: inherit;
 }
 
-button.btn,
-a.btn,
-.hl_button,
-.q-btn {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    min-height: 38px !important;
-    padding: 6px 14px !important;
-    line-height: 1.4 !important;
-    gap: 8px !important;
+/* Section headings inside sidebar/settings panels */
+#sidebar-v2 h1,
+#sidebar-v2 h2,
+#sidebar-v2 h3,
+#sidebar-v2 h4,
+.hl_settings--sidebar h1,
+.hl_settings--sidebar h2,
+.hl_settings--sidebar h3,
+.hl_settings--sidebar h4 {
+    color: #0f172a !important;
 }
 
-.n-button {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding: 6px 12px !important;
-    font-weight: 500 !important;
-}
-
-button[class*="rounded-full"],
-a[class*="rounded-full"],
-.btn.rounded-full {
-    border-radius: 9999px !important;
-    padding-left: 18px !important;
-    padding-right: 18px !important;
-}
-
-/* Primary/Accent surfaces */
-.bg-primary,
-.btn-primary,
-.hl_button--primary,
-.badge-primary,
-.n-button--primary-type,
-.n-button--info-type,
-.n-button--success-type {
-    background-color: var(--arm-mist-accent) !important;
-    border-color: var(--arm-mist-accent) !important;
-    color: #ffffff !important;
-}
-
-.bg-primary svg,
-.btn-primary svg,
-.hl_button--primary svg,
-.badge-primary svg,
-.n-button--primary-type svg,
-.n-button--info-type svg,
-.n-button--success-type svg,
-.bg-primary i,
-.btn-primary i,
-.hl_button--primary i,
-.badge-primary i,
-.n-button--primary-type i,
-.n-button--info-type i,
-.n-button--success-type i {
-    color: #ffffff !important;
-    fill: currentColor !important;
-    stroke: currentColor !important;
-}
-
-/* Soft/secondary surfaces */
-[class*="bg-blue-50"],
-[class*="bg-blue-100"],
-[class*="bg-blue-200"],
-[class*="bg-primary-50"],
-[class*="bg-primary-100"],
-[class*="bg-primary-light"],
-.badge-primary-light,
-.badge-light,
-.bg-light-blue,
-.chat-bubble-mine {
-    background-color: var(--arm-mist-start) !important;
-    color: var(--arm-mist-accent) !important;
-    border-color: transparent !important;
-}
-
-[class*="bg-blue-50"] svg,
-[class*="bg-blue-100"] svg,
-[class*="bg-blue-200"] svg,
-[class*="bg-primary-50"] svg,
-[class*="bg-primary-100"] svg,
-[class*="bg-primary-light"] svg,
-.badge-primary-light svg,
-.badge-light svg,
-.bg-light-blue svg,
-.chat-bubble-mine svg,
-[class*="bg-blue-50"] i,
-[class*="bg-blue-100"] i,
-[class*="bg-blue-200"] i,
-[class*="bg-primary-50"] i,
-[class*="bg-primary-100"] i,
-[class*="bg-primary-light"] i,
-.badge-primary-light i,
-.badge-light i,
-.bg-light-blue i,
-.chat-bubble-mine i {
-    color: currentColor !important;
-    fill: currentColor !important;
-    stroke: currentColor !important;
-}
-
-.btn-white,
-.btn-light,
-.hl_button--default,
-.q-btn--outline,
-[class*="btn-outline-blue"] {
-    background-color: #ffffff !important;
-    border: 1px solid var(--arm-mist-accent) !important;
-    color: var(--arm-mist-accent) !important;
-}
-
-.btn-white:hover,
-.btn-light:hover,
-.hl_button--default:hover,
-.q-btn--outline:hover {
-    background-color: rgba(215, 227, 252, 0.45) !important;
-}
-
-.btn-white svg,
-.btn-light svg,
-.hl_button--default svg,
-.q-btn--outline svg,
-[class*="btn-outline-blue"] svg,
-.btn-white i,
-.btn-light i,
-.hl_button--default i,
-.q-btn--outline i,
-[class*="btn-outline-blue"] i {
-    color: currentColor !important;
-    fill: currentColor !important;
-    stroke: currentColor !important;
-}
-
-/* --- 5. Tabs / Pagination / Inputs --- */
-.nav-tabs .nav-link.active,
-.n-tabs-tab--active,
-.q-tab--active,
-[id*="smart-list"] .active {
-    color: var(--arm-mist-accent) !important;
-    border-bottom: 2px solid var(--arm-mist-accent) !important;
-    background-color: transparent !important;
-}
-
-.page-item.active .page-link,
-.n-pagination-item--active {
-    background-color: var(--arm-mist-accent) !important;
-    border-color: var(--arm-mist-accent) !important;
-    color: #ffffff !important;
-}
-
-.page-link {
-    color: var(--arm-mist-accent) !important;
-}
-
-input:focus,
-select:focus,
-textarea:focus,
-.n-input--focus,
-.n-base-selection--active {
-    border-color: var(--arm-mist-accent) !important;
-    box-shadow: 0 0 0 3px var(--arm-mist-focus-ring) !important;
-}
-
-.dropdown-menu {
-    background-color: #ffffff !important;
-    color: var(--arm-mist-text) !important;
-    border: 1px solid rgba(148, 163, 184, 0.18) !important;
-}
-
-/* --- 6. Card/Icon Visibility Recovery (main issue) --- */
-.card,
-.hl-card,
-.n-card,
-[class*="card"] {
-    color: var(--arm-mist-text);
-}
-
-.card svg,
-.hl-card svg,
-.n-card svg,
-[class*="card"] svg {
-    color: currentColor !important;
-    stroke: currentColor !important;
-}
-
-/* Common circular icon wrappers */
-.card [class*="rounded-full"]:not(.hl_header_avatar):not(.avatar):not([class*="header"]),
-.hl-card [class*="rounded-full"]:not(.hl_header_avatar):not(.avatar):not([class*="header"]),
-.n-card [class*="rounded-full"]:not(.hl_header_avatar):not(.avatar):not([class*="header"]),
-[class*="card"] [class*="rounded-full"]:not(.hl_header_avatar):not(.avatar):not([class*="header"]) {
-    background-color: var(--arm-icon-bg-soft) !important;
-    color: var(--arm-icon-fg-strong) !important;
-}
-
-.card [class*="rounded-full"] svg,
-.hl-card [class*="rounded-full"] svg,
-.n-card [class*="rounded-full"] svg,
-[class*="card"] [class*="rounded-full"] svg,
-.card [class*="rounded-full"] i,
-.hl-card [class*="rounded-full"] i,
-.n-card [class*="rounded-full"] i,
-[class*="card"] [class*="rounded-full"] i {
-    color: currentColor !important;
-    fill: currentColor !important;
-    stroke: currentColor !important;
-    opacity: 1 !important;
-}
-
-/* Generic icon containers used by GHL cards/widgets */
-.card [class*="icon"],
-.hl-card [class*="icon"],
-.n-card [class*="icon"],
-[class*="card"] [class*="icon"] {
-    color: var(--arm-icon-fg-strong) !important;
-}
-
-.card [class*="icon"] svg,
-.hl-card [class*="icon"] svg,
-.n-card [class*="icon"] svg,
-[class*="card"] [class*="icon"] svg {
-    fill: currentColor !important;
-    stroke: currentColor !important;
-}
-
-/* Preserve textual readability in cards */
-.card .text-gray-400,
-.card .text-gray-500,
-.hl-card .text-gray-400,
-.hl-card .text-gray-500,
-.n-card .text-gray-400,
-.n-card .text-gray-500 {
-    color: var(--arm-mist-text-soft) !important;
-}
-
-/* --- 7. Safety Resets for hidden/invisible artifacts --- */
-[style*="color: transparent"]:not(input):not(textarea),
-[style*="fill: transparent"] {
-    color: inherit !important;
-    fill: currentColor !important;
-}
-
-/* Do not recolor logos/media/icons rendered as background images */
-[class*="logo"],
-.hl_header--logo,
-#ghl-logo {
-    background-color: transparent !important;
-}
-
-#app .hl_header--logo,
-#app #ghl-logo {
-    display: none !important;
-}
-
-/* --- 8. Accessibility polish --- */
-a:focus-visible,
-button:focus-visible,
-[role="button"]:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible {
-    outline: 2px solid var(--arm-mist-accent) !important;
-    outline-offset: 2px !important;
-}
-
-/* --- 9. Icon Neutral Mode (restore native icon look) --- */
-/* Activated by custom.js via html[data-arm-icon-neutral] */
-html[data-arm-icon-neutral] #sidebar-v2 .nav-link svg,
-html[data-arm-icon-neutral] .hl_settings--sidebar .nav-link svg,
-html[data-arm-icon-neutral] aside .nav-link svg,
-html[data-arm-icon-neutral] #sidebar-v2 .nav-link i,
-html[data-arm-icon-neutral] .hl_settings--sidebar .nav-link i,
-html[data-arm-icon-neutral] aside .nav-link i,
-html[data-arm-icon-neutral] #app header svg,
-html[data-arm-icon-neutral] #app header i,
-html[data-arm-icon-neutral] .hl_header svg,
-html[data-arm-icon-neutral] .hl_header i,
-html[data-arm-icon-neutral] .card svg,
-html[data-arm-icon-neutral] .hl-card svg,
-html[data-arm-icon-neutral] .n-card svg,
-html[data-arm-icon-neutral] [class*="card"] svg,
-html[data-arm-icon-neutral] .card i,
-html[data-arm-icon-neutral] .hl-card i,
-html[data-arm-icon-neutral] .n-card i,
-html[data-arm-icon-neutral] [class*="card"] i {
-    color: revert !important;
-    fill: revert !important;
-    stroke: revert !important;
-    opacity: 1 !important;
-    filter: none !important;
-}
-
-/* Remove our custom circular icon treatments in cards */
-html[data-arm-icon-neutral] .card [class*="rounded-full"],
-html[data-arm-icon-neutral] .hl-card [class*="rounded-full"],
-html[data-arm-icon-neutral] .n-card [class*="rounded-full"],
-html[data-arm-icon-neutral] [class*="card"] [class*="rounded-full"] {
-    background-color: revert !important;
-    color: revert !important;
-}
-
-/* Header topbar: undo generic button/icon styling and keep icons readable */
-html[data-arm-icon-neutral] #app header .q-btn,
-html[data-arm-icon-neutral] #app header .btn,
-html[data-arm-icon-neutral] #app header .hl_button,
-html[data-arm-icon-neutral] .hl_header .q-btn,
-html[data-arm-icon-neutral] .hl_header .btn,
-html[data-arm-icon-neutral] .hl_header .hl_button {
-    min-height: revert !important;
-    height: revert !important;
-    padding: revert !important;
-    gap: revert !important;
-    border-radius: revert !important;
-    line-height: normal !important;
-    letter-spacing: normal !important;
-    box-shadow: revert !important;
-}
-
-/* Non-colored header action icons: make sure they don't disappear */
-html[data-arm-icon-neutral] #app header button:not(.bg-orange-600):not(.bg-green-500) svg,
-html[data-arm-icon-neutral] #app header [role="button"]:not(.bg-orange-600):not(.bg-green-500) svg,
-html[data-arm-icon-neutral] .hl_header button:not(.bg-orange-600):not(.bg-green-500) svg,
-html[data-arm-icon-neutral] .hl_header [role="button"]:not(.bg-orange-600):not(.bg-green-500) svg {
-    color: #374151 !important;
-    fill: currentColor !important;
-    stroke: currentColor !important;
+/* Secondary sidebar text only (do not touch icons) */
+#sidebar-v2 .text-gray-400,
+#sidebar-v2 .text-gray-500,
+#sidebar-v2 .text-gray-600,
+.hl_settings--sidebar .text-gray-400,
+.hl_settings--sidebar .text-gray-500,
+.hl_settings--sidebar .text-gray-600 {
+    color: var(--arm-sidebar-text-muted) !important;
     opacity: 1 !important;
 }
