@@ -1,16 +1,16 @@
-# ARM - GoHighLevel Custom Skin (v32.0 / v16.0)
+# ARM - GoHighLevel Custom Skin (v33.0 / v16.0)
 
 Este repositorio contiene la personalización visual (Skin) para GoHighLevel.
-**Versión 32.0 (Factory Header Reset)**: Restauración "limpia" de la cabecera (Campana, Avatar, Estado) a sus valores de fábrica. Se ha corregido un error de geometría que afectaba a elementos circulares.
+**Versión 33.0 (Safe Contrast Refactor)**: Refactor de selectores CSS para reducir overrides agresivos, mejorar contraste/visibilidad de iconos y evitar elementos invisibles por reglas globales.
 
 ## 🚀 Instalación en GoHighLevel
 
 Para aplicar este diseño a tu agencia o sub-cuenta, ve a:
 **Settings** > **Company** (o Location) > **Custom Code**.
 
-### 1. Head Tracking Code (CSS v32.0)
+### 1. Head Tracking Code (CSS v33.0)
 ```html
-<link rel="stylesheet" href="https://go-high-level-customization.vercel.app/custom.css?v=32.1">
+<link rel="stylesheet" href="https://go-high-level-customization.vercel.app/custom.css?v=33.0">
 ```
 
 ### 2. Body Tracking Code (JS v16.0)
