@@ -1,6 +1,6 @@
 /* =========================================
    ARM - GoHighLevel Custom Skin
-   Version: 33.0 (Safe Contrast Refactor)
+   Version: 33.1 (Sidebar Contrast Recovery)
    ========================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -58,6 +58,12 @@ iframe {
     filter: none !important;
 }
 
+#app header svg,
+#app .hl_header svg,
+#app [class*="header"] svg {
+    opacity: 1 !important;
+}
+
 /* --- 3. Sidebar (visual only, no global descendants) --- */
 #sidebar-v2,
 .sidebar-v2-location #sidebar-v2,
@@ -70,6 +76,7 @@ iframe {
 .hl_settings--sidebar .nav-link,
 aside .nav-link {
     color: var(--arm-mist-text) !important;
+    opacity: 1 !important;
 }
 
 #sidebar-v2 .nav-link svg,
@@ -79,6 +86,15 @@ aside .nav-link {
 aside .nav-link svg,
 aside .nav-link i {
     color: currentColor !important;
+    fill: currentColor !important;
+    stroke: currentColor !important;
+    opacity: 1 !important;
+}
+
+#sidebar-v2 .nav-link *,
+.hl_settings--sidebar .nav-link *,
+aside .nav-link * {
+    color: inherit !important;
     fill: currentColor !important;
     stroke: currentColor !important;
     opacity: 1 !important;
@@ -100,6 +116,15 @@ aside .nav-link.active {
     box-shadow: 0 4px 10px rgba(171, 196, 255, 0.35) !important;
     font-weight: 600 !important;
     border-radius: 10px !important;
+}
+
+#sidebar-v2 .nav-link.active *,
+.hl_settings--sidebar .nav-link.active *,
+aside .nav-link.active * {
+    color: inherit !important;
+    fill: currentColor !important;
+    stroke: currentColor !important;
+    opacity: 1 !important;
 }
 
 /* --- 4. Buttons (explicit, not wildcard descendants) --- */
